@@ -1,0 +1,9 @@
+.logoWrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.mainLogo {
+    width: 60vw;
+}

@@ -1,6 +1,7 @@
 /* eslint-disable */
 import './styles/common/reset.css'
 import {Mobile, PC} from "./components/config/Responsive";
+import MainCover from "./components/blocks/MainCover";
 
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
             </div>
           </PC>
           <Mobile>
-            <p>TEST</p>
+              <MainCover />
           </Mobile>
         </main>
       </div>

@@ -1,0 +1,17 @@
+.loginBox {
+    padding-top: 30vw;
+}
+
+.loginWrap {
+    margin: 0 auto;
+}
+
+.detailBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    margin: 3vw auto 10vw ;
+    color: darkgray;
+    font-size: 2.8vw;
+}
