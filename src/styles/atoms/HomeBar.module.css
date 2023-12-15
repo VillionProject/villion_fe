@@ -1,0 +1,25 @@
+.homeBarOutLined {
+    border-top: 0.07vw solid rgb(215, 224, 230);
+    border-radius: 2vw 2vw 0vw 0vw; /* 좌상단: 0.5vw, 우상단: 0vw, 우하단: 1vw, 좌하단: 1vw */
+    width: 100%;
+    height: 20vw;
+}
+
+.homeBarContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 5vw auto;
+}
+
+.barDetailWrap {
+    margin-bottom: 0.5vw;
+}
+
+.barDetailWrap p {
+    color: darkgray;
+}
+
+.bar {
+
+}
