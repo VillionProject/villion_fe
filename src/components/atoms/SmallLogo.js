@@ -4,7 +4,7 @@ import classes from "../../styles/atoms/SmallLogo.module.css";
 
 const SmallLogo = () => {
     return (
-        <div className={classes.smallLogoWrap}>
+        <div>
             <img src={logoImg} className={classes.smallLogo} alt="Logo Description"/>
         </div>
     );

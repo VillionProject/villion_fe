@@ -1,4 +1,10 @@
-.mainTopWrap {
+.topWrap {
+    display: flex;
+    flex-direction: row;
+    margin: 4vw auto 3vw auto;
+}
+
+.mainIconWrap {
     display: flex;
     flex-direction: row;
 }
@@ -6,18 +12,31 @@
 .addressWrap {
     display: flex;
     flex-direction: row;
+    width: calc((100% / 3) *2);
+    align-items: center;
+    justify-items: center;
 }
 .address {
     font-weight: 500;
+    margin: 0 2vw;
+/*    위 오 아래 왼*/
 }
 
 .topSvgWrap {
     display: flex;
     flex-direction: row;
+    width: calc(100% / 3);
+    align-items: center;
+    justify-items: flex-start;
 }
 
 .svgContainer {
     width: 25px;
+    height: 24px;
+}
+
+.svgRightContainer {
+    width: 70px;
     height: 24px;
 }
 
@@ -34,7 +53,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-weight: 700;
+    font-weight: 500;
     padding: 2vw 2vw;
 }
 

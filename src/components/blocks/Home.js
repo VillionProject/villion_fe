@@ -21,30 +21,34 @@ const Home = () => {
 
     return (
         <div>
-            <div className={classes.mainTopWrap}>
+            <div className={classes.topWrap}>
                 <SmallLogo></SmallLogo>
-                <div className={classes.addressWrap}>
-                    <h1 className={classes.address}>인계동</h1>
-                    <svg className={classes.svgContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
-                         fill="none">
-                        <image href={ArrowDown}/>
-                    </svg>
-                </div>
-                <div className={classes.topSvgWrap}>
-                    <svg className={classes.svgContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
-                         fill="none">
-                        <image href={Bell}/>
-                    </svg>
-                    <svg className={classes.svgContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
-                         fill="none">
-                        <image href={Heart}/>
-                    </svg>
-                    <svg className={classes.svgContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
-                         fill="none">
-                        <image href={Bag}/>
-                    </svg>
-                </div>
+                    <div className={classes.mainIconWrap}>
+                        <div className={classes.addressWrap}>
+                            <h1 className={classes.address}>인계동</h1>
+                            <svg className={classes.svgContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
+                                 fill="none">
+                                <image href={ArrowDown}/>
+                            </svg>
+                        </div>
+                        <div className={classes.topSvgWrap}>
+                            <svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
+                                 fill="none">
+                                <image href={Bell}/>
+                            </svg>
+                            <svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
+                                 fill="none">
+                                <image href={Heart}/>
+                            </svg>
+                            <svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
+                                 fill="none">
+                                <image href={Bag}/>
+                            </svg>
+                        </div>
+                    </div>
             </div>
+
+
 
             <img className={classes.topAd} src={bookImg10} alt="Logo Description"/>
 
