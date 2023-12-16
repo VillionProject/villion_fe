@@ -53,8 +53,8 @@ const Home = () => {
             <img className={classes.topAd} src={bookImg10} alt="Logo Description"/>
 
             <Center>
-                <div>
-                    <div className={classes.bookListWarp}>
+                <div className={classes.bookListWarp}>
+                    <div className={classes.bookListContainer}>
                         <div className={classes.bookTitleWrap}>
                             <div>인계동에서 대여할 수 있는 책</div>
                             <div>더보기</div>
@@ -66,7 +66,33 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className={classes.bookListWarp}>
+                    <div className={classes.bookListContainer}>
+                        <div className={classes.bookTitleWrap}>
+                            <div>인기있는 책</div>
+                            <div>더보기</div>
+                        </div>
+
+                        <div className={classes.bookContainer}>
+                            <img src={bookImg5} className={classes.book} alt="Logo Description"/>
+                            <img src={bookImg7} className={classes.book} alt="Logo Description"/>
+                            <img src={bookImg8} className={classes.book} alt="Logo Description"/>
+                        </div>
+                    </div>
+
+                    <div className={classes.bookListContainer}>
+                        <div className={classes.bookTitleWrap}>
+                            <div>인기있는 책</div>
+                            <div>더보기</div>
+                        </div>
+
+                        <div className={classes.bookContainer}>
+                            <img src={bookImg5} className={classes.book} alt="Logo Description"/>
+                            <img src={bookImg7} className={classes.book} alt="Logo Description"/>
+                            <img src={bookImg8} className={classes.book} alt="Logo Description"/>
+                        </div>
+                    </div>
+
+                    <div className={classes.bookListContainer}>
                         <div className={classes.bookTitleWrap}>
                             <div>인기있는 책</div>
                             <div>더보기</div>

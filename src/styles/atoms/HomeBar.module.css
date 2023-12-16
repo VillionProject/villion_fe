@@ -3,9 +3,9 @@
     /*align-items: center;*/
 
     border-top: 0.07vw solid rgb(215, 224, 230);
-    border-radius: 2vw 2vw 0vw 0vw; /* 위 우 아래 좌 */
+    border-radius: 2vw 2vw 0 0; /* 위 우 아래 좌 */
     width: 100%;
-    height: 20vw;
+    /*height: 15vw;*/
 }
 
 .homeBarContainer {
@@ -13,6 +13,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    height: 15vw;
 }
 
 .barDetailWrap {
