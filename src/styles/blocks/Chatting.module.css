@@ -1,0 +1,23 @@
+.chattingContainer {
+    width: 100%;
+    height: 100vh;
+    /*background-color: blue;*/
+}
+
+.topWrap {
+    background-color: wheat;
+    width: 100%;
+    height: 15vh;
+}
+
+.chattingWrap {
+    background-color: skyblue;
+    width: 100%;
+    height: 70vh;
+}
+
+.messageWrap {
+    background-color: lightblue;
+    width: 100%;
+    height: 15vh;
+}

@@ -1,12 +1,15 @@
 .topWrap {
     display: flex;
     flex-direction: row;
-    margin: 1vw auto 1vw auto;
+    height: 10vh;
+    align-items: center;
 }
 
 .mainIconWrap {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin-left: 3vw;
 }
 
 .addressWrap {
@@ -15,6 +18,7 @@
     width: calc((100% / 3) *2);
     align-items: center;
     justify-items: center;
+    margin-right: 10vw;
 }
 .address {
     font-weight: 500;
