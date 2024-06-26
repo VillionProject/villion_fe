@@ -16,6 +16,7 @@ import bookImg9 from "../../../src/asset/books/image 9.png"
 import bookImg10 from "../../../src/asset/books/image 10.png"
 import HomeBar from "../atoms/HomeBar";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const Home = () => {
 
@@ -115,7 +116,10 @@ const Home = () => {
 
             <img className={classes.BottomAd} src={bookImg9} alt="Logo Description"/>
 
-            <HomeBar></HomeBar>
+            <Footer>
+                <HomeBar></HomeBar>
+            </Footer>
+
         </div>
     );
 };

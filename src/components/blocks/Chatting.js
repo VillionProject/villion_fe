@@ -5,9 +5,12 @@ const Chatting = () => {
 
     return (
         <div className={classes.chattingContainer}>
-            <div className={classes.topWrap}>
+            <Header>
+                <div className={classes.topWrap}>
 
-            </div>
+                </div>
+            </Header>
+
 
             <div className={classes.chattingWrap}>
 
