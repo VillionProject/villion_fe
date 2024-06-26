@@ -1,0 +1,93 @@
+.topWrap {
+    display: flex;
+    flex-direction: row;
+    margin: 1vw auto 1vw auto;
+}
+
+.mainIconWrap {
+    display: flex;
+    flex-direction: row;
+}
+
+.addressWrap {
+    display: flex;
+    flex-direction: row;
+    width: calc((100% / 3) *2);
+    align-items: center;
+    justify-items: center;
+}
+.address {
+    font-weight: 500;
+    margin: 0 2vw;
+    /* 위 오 아래 왼 */
+}
+
+.topSvgWrap {
+    display: flex;
+    flex-direction: row;
+    width: calc(100% / 3);
+    align-items: center;
+    justify-items: flex-start;
+}
+
+.svgContainer {
+    width: 25px;
+    height: 24px;
+}
+
+.svgRightContainer {
+    width: 70px;
+    height: 24px;
+}
+
+.topAd {
+    width: 100%;
+    height: 12vh; /* vh 단위 사용: 뷰포트 높이의 10% */
+    background-color: blue;
+}
+
+.bookListWarp {
+    overflow: auto;
+    height: 101vw;
+}
+
+/* 스크롤바를 감춥니다. */
+.bookListWarp::-webkit-scrollbar {
+    width: 0;
+}
+
+/* 스크롤바 thumb에 색상을 지정합니다. */
+.bookListWarp::-webkit-scrollbar-thumb {
+    background-color: transparent; /* 배경색 없음 */
+}
+
+.bookListContainer {
+    margin: 0 auto 2vw 0;
+    /* overflow-y: auto; */ /* 이 부분을 제거하세요 */
+}
+
+.bookTitleWrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 500;
+    padding: 2vw 2vw;
+
+}
+
+.bookContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.book {
+    width: 27vw;
+    height: 36vw;
+    /* box-shadow:  1vw 2vw 4vw 0vw darkgray; */
+}
+
+.BottomAd {
+    width: 100%;
+    height: 23vw;
+}
