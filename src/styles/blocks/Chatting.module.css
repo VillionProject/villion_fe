@@ -1,23 +1,141 @@
 .chattingContainer {
-    width: 100%;
-    height: 100vh;
-    /*background-color: blue;*/
+    display: flex;
+    flex-direction: column;
+    height: 100vh;  /* 전체 화면 높이 */
 }
 
 .topWrap {
-    background-color: wheat;
-    /*width: 100%;*/
-    height: 15vh;
+    flex-shrink: 0;  /* 크기가 줄어들지 않도록 설정 */
+    background-color: aquamarine;  /* 배경 색상 */
+    /*height: 15vh;  !* 높이를 화면 높이의 15%로 설정 *!*/
+    width: 100%;  /* 전체 너비 */
 }
 
 .chattingWrap {
-    background-color: skyblue;
-    width: 100%;
-    height: 70vh;
+    flex-grow: 1;  /* 남은 공간을 차지하도록 설정 */
+    background-color: white;  /* 배경 색상 */
+    width: 100%;  /* 전체 너비 */
+    overflow-y: auto; /* 내용이 넘칠 때 스크롤바 표시 */
+    -ms-overflow-style: none; /* IE 및 Edge에 기본 스크롤바 숨기기 */
+}
+
+.chattingWrap::-webkit-scrollbar {
+    display: none; /* Chrome 및 Safari에 기본 스크롤바 숨기기 */
 }
 
 .messageWrap {
-    background-color: lightblue;
-    width: 100%;
-    height: 15vh;
+    flex-shrink: 0;  /* 크기가 줄어들지 않도록 설정 */
+    /*background-color: darkkhaki;  !* 배경 색상 *!*/
+    height: 100%;  /* 높이를 화면 높이의 15%로 설정 */
+    width: 100%;  /* 전체 너비 */
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    justify-content: center; /* 수평 방향 가운데 정렬 */
 }
+
+
+.EndBtn {
+    background-color: rgba(238, 237, 237, 0.8); /* #EEEDED의 불투명도를 80%로 설정 */
+    height: 10vw;
+}
+
+.messageBox {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw; /* 메시지 박스 사이의 간격 설정 */
+    height: 100%;
+    padding: 2vw;
+    max-height: 100%;
+    /*overflow-y: auto; !* 내용이 넘칠 때 스크롤바 표시 *!*/
+}
+
+.firstMessage {
+    background-color: #F8F9FE;
+    width: 80%;
+    height: 25%;
+    padding: 2vw;
+    border-radius: 8px;
+}
+
+.firstBookImg {
+    width: 80%;
+    height: 15%;
+}
+
+.bookDetailWrap {
+    display: flex;
+    flex-direction: row;
+    font-size: 3.5vw;
+}
+
+.bookDetailElement {
+
+}
+
+.bookPublisher {
+    display: flex;
+    flex-direction: row;
+}
+.bookStatus {
+    display: flex;
+    flex-direction: row;
+}
+
+.bringMassageBox {
+    background-color: #F8F9FE;
+    align-self: flex-start; /* 왼쪽 정렬 */
+}
+
+.sendMassageBox {
+    background-color: #2897FF;
+    align-self: flex-end; /* 오른쪽 정렬 */
+    gap: 2vw;
+}
+
+.bringUserName {
+    color: #71727A; /* 폰트 색상 설정 (원하는 색상 코드로 변경 가능) */
+    font-weight: bold; /* 폰트 굵게 설정 */
+    margin-bottom: 1vw;
+}
+
+.sendUserName {
+    color: #B4DBFF; /* 폰트 색상 설정 (원하는 색상 코드로 변경 가능) */
+    font-weight: bold; /* 폰트 굵게 설정 */
+    margin-bottom: 1vw;
+}
+
+.bringMassageBox, .sendMassageBox {
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    min-width: 30%; /* 최대 너비 설정 */
+    max-width: 80%; /* 최대 너비 설정 */
+    word-wrap: break-word; /* 긴 단어들이 텍스트 상자 바깥으로 넘치지 않도록 줄바꿈 */
+    padding: 2vw; /* 내부 여백 설정 */
+    border-radius: 8px; /* 모서리 둥글게 만들기 */
+}
+
+.bringMassage {
+    background-color: #F8F9FE;
+
+}
+.sendMassage {
+    background-color: #2897FF;
+    color: white;
+}
+
+.inputMessage {
+    background-color: #F8F9FE;
+    width: 90%;
+    height: 40%;
+    border-radius: 8px;
+    padding: 2vw;
+    box-sizing: border-box; /* 내부 여백 및 테두리를 포함한 전체 너비 설정 */
+    font-size: 16px; /* 폰트 크기 설정 */
+    margin: 2vw;
+
+}
+.inputIcon {
+    width: 40px; /* 아이콘 너비 */
+    height: 40px; /* 아이콘 높이 */
+    margin-right: 2vw; /* 오른쪽 정렬 */
+}
+
