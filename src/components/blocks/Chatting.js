@@ -13,6 +13,8 @@ const Chatting = () => {
     const [libraryName, setLibraryName] = useState('');
     const [stompClient, setStompClient] = useState(null);
     const [greetings, setGreetings] = useState([]);
+    const [inputMessage, setInputMessage] = useState('');
+    const maxLength = 100; // 최대 글자 수
 
     useEffect(() => {
         axios
@@ -52,12 +54,23 @@ const Chatting = () => {
     const sendName = () => {
         const obj = {
             userId: userId,
-            libraryName: "libraryName",
-            message: "message"
+            libraryName: libraryName,
+            message : inputMessage
         };
         stompClient.send('/app/hello', {}, JSON.stringify(obj));
     };
 
+    // Feat : 채팅 길이 제한
+    const handleInputChange = (event) => {
+        const text = event.target.value;
+        setInputMessage(text);
+        // 입력된 텍스트 길이가 최대 길이를 초과하지 않도록 확인
+        if (text.length <= maxLength) {
+            setInputMessage(text);
+        } else {
+            alert('100자를 초과하였습니다.'); // 100자를 초과한 경우 알림
+        }
+    };
     return (
         <div className={classes.chattingContainer}>
             <Header>
@@ -92,7 +105,7 @@ const Chatting = () => {
                     </div>
 
                     {greetings.map((item, idx) => (
-                        <div  key={idx}  className={item.userId === 6 ? classes.sendMassageBox : classes.bringMassageBox}>
+                        <div  key={idx}  className={item.userId === 3 ? classes.sendMassageBox : classes.bringMassageBox}>
                             <div className={classes.bringUserName}>
                                 {item.libraryName}
                             </div>
@@ -115,7 +128,7 @@ const Chatting = () => {
 
             <Footer>
                 <div className={classes.messageWrap}>
-                    <input className={classes.inputMessage} type="text" placeholder="메세지를 입력하세요" />
+                    <input className={classes.inputMessage} onChange={handleInputChange} type="text" placeholder="메세지를 입력하세요" />
                     <img onClick={sendName} className={classes.inputIcon} src={sendPlaneIcon} alt="메세지 보내기" />
                 </div>
             </Footer>
