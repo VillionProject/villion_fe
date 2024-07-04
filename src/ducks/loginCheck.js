@@ -2,14 +2,19 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialIsLoginState = {
   loginInfo : {
-      isLogin : false,
-      id : null,
-      username : null,
-      profileImgPath : null,
-      mbti : null,
-      userSeq : null,
-      interest : [],
-      location : null
+      login : false,
+      base_location_id: "",
+      createdAt: "",
+      email: "",
+      familyAccount: "",
+      grade: "",
+      interestCategory: [],
+      libraryName: "",
+      libraryStatus: "",
+      phoneNumber: "",
+      profileImage : "",
+      userId: "",
+      yearlyReadingTarget: ""
   }
 
 }

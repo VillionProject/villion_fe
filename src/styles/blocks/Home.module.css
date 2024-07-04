@@ -1,24 +1,19 @@
 .topWrap {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    /*height: 10vh;*/
     align-items: center;
+    justify-content: space-between;
+    padding-right: 4vw;
 }
 
 .mainIconWrap {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-left: 3vw;
 }
 
 .addressWrap {
     display: flex;
-    flex-direction: row;
-    width: calc((100% / 3) *2);
     align-items: center;
     justify-items: center;
-    margin-right: 10vw;
 }
 .address {
     font-weight: 500;
@@ -28,10 +23,8 @@
 
 .topSvgWrap {
     display: flex;
-    flex-direction: row;
-    width: calc(100% / 3);
-    align-items: center;
-    justify-items: flex-start;
+    gap: 4.5vw;
+    margin-left: 10vw;
 }
 
 .svgContainer {
@@ -40,7 +33,6 @@
 }
 
 .svgRightContainer {
-    width: 70px;
     height: 24px;
 }
 

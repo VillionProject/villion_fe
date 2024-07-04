@@ -17,7 +17,7 @@ const HomeBar = () => {
                 </div>
                 <div className={classes.barDetailWrap}>
                     <img src={Group} className={classes.bar} alt="Logo Description"/>
-                    <p>모임</p>
+                    <p>채팅</p>
                 </div>
                 <div className={classes.barDetailWrap}>
                     <img src={Plus} className={classes.bar} alt="Logo Description"/>

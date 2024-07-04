@@ -1,8 +1,12 @@
 .footContainer {
-    display: flex;
-    align-items: center;  /* 수직 정렬 */
-    justify-content: center;  /* 수평 중앙 정렬 */
-    height: 15vh;  /* 높이를 화면 높이의 15%로 설정 */
+    /*display: flex;*/
     width: 100%;  /* 전체 너비 */
-    /*background-color: sandybrown;  !* 배경 색상 *!*/
+    height: 10vh;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    background: white;
+    display: flex;
+    align-items: flex-start;  /* 수직 정렬 */
+    justify-content: center;  /* 수평 중앙 정렬 */
 }
