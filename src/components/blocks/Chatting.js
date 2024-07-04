@@ -1,12 +1,12 @@
+import {useEffect, useRef, useState} from 'react';
+import axios from "axios";
+import Stomp from 'stompjs';
+import SockJS from "sockjs-client";
 import classes from "../../styles/blocks/Chatting.module.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import sendPlaneIcon from "../../../src/asset/images/Send.png";
 import bookImg3 from "../../../src/asset/books/image 3.png";
-import { useEffect, useState } from 'react';
-import axios from "axios";
-import Stomp from 'stompjs';
-import SockJS from "sockjs-client";
 
 const Chatting = () => {
     const [userId, setUserId] = useState('');
@@ -14,18 +14,17 @@ const Chatting = () => {
     const [stompClient, setStompClient] = useState(null);
     const [greetings, setGreetings] = useState([]);
     const [inputMessage, setInputMessage] = useState('');
+    const messageBoxRef = useRef(null); // useRef로 메시지 박스를 참조
     const maxLength = 100; // 최대 글자 수
 
+    // function getRandomId() {
+    //     const ids = [1, 2];
+    //     const randomIndex = Math.floor(Math.random() * ids.length);
+    //     return ids[randomIndex];
+    // }
+
     useEffect(() => {
-        axios
-            .get('http://localhost:8000/api/v1/user/findByID/1')
-            .then((res) => {
-                setUserId(res.data.userId);
-                setLibraryName(res.data.libraryName);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+
 
         const socket = new SockJS('http://localhost:8082/stomp-endpoint');
         const stomp = Stomp.over(socket);
@@ -35,7 +34,6 @@ const Chatting = () => {
             console.log('Connected: ' + frame);
 
             stomp.subscribe('/topic/greetings', (greeting) => {
-                console.log("메세지도착함")
                 const parseMessage = JSON.parse(greeting.body);
                 setGreetings((prevState) => [...prevState, parseMessage]);
             });
@@ -45,32 +43,41 @@ const Chatting = () => {
         return () => {
             if (stompClient !== null) {
                 stompClient.disconnect();
-                console.log('Disconnected');
             }
         };
     }, []); // 빈 배열을 사용하여 한 번만 실행되도록 설정
 
-    // Feat : 메시지 보내기
+    useEffect(() => {
+
+        // 메시지가 추가될 때마다 스크롤을 맨 아래로 이동
+        if (messageBoxRef.current) {
+            messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
+            console.log(messageBoxRef.current.scrollHeight)
+        }
+    }, [greetings]);
+
     const sendName = () => {
         const obj = {
             userId: userId,
             libraryName: libraryName,
-            message : inputMessage
+            message: inputMessage
         };
         stompClient.send('/app/hello', {}, JSON.stringify(obj));
+        setInputMessage(''); // 메시지 전송 후 입력 필드 초기화
+
+
     };
 
-    // Feat : 채팅 길이 제한
     const handleInputChange = (event) => {
         const text = event.target.value;
         setInputMessage(text);
-        // 입력된 텍스트 길이가 최대 길이를 초과하지 않도록 확인
         if (text.length <= maxLength) {
             setInputMessage(text);
         } else {
             alert('100자를 초과하였습니다.'); // 100자를 초과한 경우 알림
         }
     };
+
     return (
         <div className={classes.chattingContainer}>
             <Header>
@@ -79,10 +86,11 @@ const Chatting = () => {
                 </div>
             </Header>
 
-            <div className={classes.EndBtn}>
-                <button>거래완료</button>
+            <div className={classes.EndBtnBox}>
+                <p>거래가 완료되었다면 '거래완료 버튼'을 눌러주세요!</p>
+                <button className={classes.EndBtn}>거래완료</button>
             </div>
-            <div className={classes.chattingWrap}>
+            <div className={classes.chattingWrap} ref={messageBoxRef}>
                 <div className={classes.messageBox}>
                     <div className={classes.firstMessage}>
                         <p>대여(or구매)할게요!</p>
@@ -105,30 +113,22 @@ const Chatting = () => {
                     </div>
 
                     {greetings.map((item, idx) => (
-                        <div  key={idx}  className={item.userId === 3 ? classes.sendMassageBox : classes.bringMassageBox}>
-                            <div className={classes.bringUserName}>
+                        <div key={idx} className={item.userId === 1 ? classes.sendMassageBox : classes.bringMassageBox}>
+                            <div className={item.userId === 1 ? classes.sendUserName : classes.bringUserName}>
                                 {item.libraryName}
                             </div>
-                            <div className={classes.bringMassage}>
+                            <div className={item.userId === 1 ? classes.sendMassage : classes.bringMassage}>
                                 {item.message}
+                                {item.userId}
                             </div>
                         </div>
                     ))}
-
-                    {/*<div className={classes.sendMassageBox}>*/}
-                    {/*    <div className={classes.sendUserName}>*/}
-                    {/*        Lucas*/}
-                    {/*    </div>*/}
-                    {/*    <div className={classes.sendMassage}>*/}
-                    {/*        It's going well. Thanks for asking!*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
             </div>
 
             <Footer>
                 <div className={classes.messageWrap}>
-                    <input className={classes.inputMessage} onChange={handleInputChange} type="text" placeholder="메세지를 입력하세요" />
+                    <input className={classes.inputMessage} onChange={handleInputChange} value={inputMessage} type="text" placeholder="메세지를 입력하세요" />
                     <img onClick={sendName} className={classes.inputIcon} src={sendPlaneIcon} alt="메세지 보내기" />
                 </div>
             </Footer>

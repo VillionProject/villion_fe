@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Center from "./Center";
 import classes from "../../styles/blocks/Home.module.css"
 import SmallLogo from "../atoms/SmallLogo";
@@ -17,8 +17,25 @@ import bookImg10 from "../../../src/asset/books/image 10.png"
 import HomeBar from "../atoms/HomeBar";
 import Header from "./Header";
 import Footer from "./Footer";
+import axios from "axios";
 
 const Home = () => {
+
+    useEffect(() => {
+        axios.post("http://localhost:8000/api/v1/user/signup", {
+            email: "tpdls960@naver.com",
+            libraryName: "떼잉이의또써꽌",
+            password: "qwe123"
+        }, {
+            headers : {
+                "Content-Type" : "application/json"
+            }
+        }).then((res) => {
+
+        }).catch((err) => {
+            console.error(err);
+        });
+    }, []);
 
 
     return (
