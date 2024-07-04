@@ -58,9 +58,9 @@ const SignUp = () => {
                         // navigate("/login");
                     }
                 }).catch((err) => {
-                    console.log(err)
-                    setIsMsgPopupOpen({show: true, msg: err.response.data.data.message, gb : 'success'});
-                })
+                console.log(err);
+                setIsMsgPopupOpen({ show: true, msg: "회원가입 중 오류가 발생했습니다.", gb: 'error' });
+            });
 
         }, 700);
 

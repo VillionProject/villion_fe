@@ -54,7 +54,6 @@ const Login = () => {
             userLogin(id, password).then((res) => {
                 // 로그인 성공
                 if (res.status === 200) {
-                    console.log(res.data);
                     // redux ( localStorage ) 저장..
                     dispatch(loginCheckAction.loginInfoSet(res.data.data));
                     navigate('/home');
@@ -62,8 +61,8 @@ const Login = () => {
                     setIsMsgPopupOpen({show: true, msg: res.response.data.data.message});
                 }
             }).catch((err) => {
-                debugger
-                console.log(err);
+                console.log(err)
+                setIsMsgPopupOpen({ show: true, msg: "로그인 정보가 올바르지 않습니다.", gb: 'error' });
             })
 
 
