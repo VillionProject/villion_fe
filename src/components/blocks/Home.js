@@ -26,10 +26,10 @@ const Home = () => {
     const nav = useNavigate();
 
     useEffect(() => {
-        if (!userInfo.login) {
-            nav('/login');
-            return;
-        }
+        // if (!userInfo.login) {
+        //     nav('/login');
+        //     return;
+        // }
     }, []);
 
     return (

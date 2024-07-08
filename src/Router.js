@@ -4,6 +4,7 @@ import Login from "./components/blocks/Login";
 import Home from "./components/blocks/Home";
 import SignUp from "./components/blocks/SignUp";
 import Chatting from "./components/blocks/Chatting";
+import Settings from "./components/blocks/Settings";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,9 @@ const router = createBrowserRouter([
   {
     path : '/chatting',
     element : <Chatting />,
+  },{
+    path : '/settings',
+    element : <Settings />,
   }
 
 

@@ -5,8 +5,15 @@ import Group from "../../../src/asset/images/Group.svg"
 import Plus from "../../../src/asset/images/Plus.svg"
 import LIke from "../../../src/asset/images/LIke.svg"
 import User from "../../../src/asset/images/User.svg"
+import {useNavigate} from "react-router-dom";
 
 const HomeBar = () => {
+
+    const nav = useNavigate();
+
+    const linkMethods = (keyword) => {
+        nav(keyword);
+    }
 
     return (
         <div className={classes.homeBarOutLined}>
@@ -27,7 +34,7 @@ const HomeBar = () => {
                     <img src={LIke} className={classes.bar} alt="Logo Description"/>
                     <p>추천</p>
                 </div>
-                <div className={classes.barDetailWrap}>
+                <div className={classes.barDetailWrap} onClick={() => {linkMethods("/settings")}}>
                     <img src={User} className={classes.bar} alt="Logo Description"/>
                     <p>내 정보</p>
                 </div>
