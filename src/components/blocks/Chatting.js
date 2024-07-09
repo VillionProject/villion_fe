@@ -7,6 +7,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import sendPlaneIcon from "../../../src/asset/images/Send.png";
 import bookImg3 from "../../../src/asset/books/image 3.png";
+import {useSelector} from "react-redux";
 
 const Chatting = () => {
     const [userId, setUserId] = useState('');
@@ -16,12 +17,8 @@ const Chatting = () => {
     const [inputMessage, setInputMessage] = useState('');
     const messageBoxRef = useRef(null); // useRef로 메시지 박스를 참조
     const maxLength = 100; // 최대 글자 수
+    const userInfo = useSelector(state => state.loginCheck.loginInfo);
 
-    // function getRandomId() {
-    //     const ids = [1, 2];
-    //     const randomIndex = Math.floor(Math.random() * ids.length);
-    //     return ids[randomIndex];
-    // }
 
     useEffect(() => {
 
@@ -113,11 +110,11 @@ const Chatting = () => {
                     </div>
 
                     {greetings.map((item, idx) => (
-                        <div key={idx} className={item.userId === 1 ? classes.sendMassageBox : classes.bringMassageBox}>
-                            <div className={item.userId === 1 ? classes.sendUserName : classes.bringUserName}>
+                        <div key={idx} className={item.userId === userInfo.id ? classes.sendMassageBox : classes.bringMassageBox}>
+                            <div className={item.userId === userInfo.id  ? classes.sendUserName : classes.bringUserName}>
                                 {item.libraryName}
                             </div>
-                            <div className={item.userId === 1 ? classes.sendMassage : classes.bringMassage}>
+                            <div className={item.userId === userInfo.id  ? classes.sendMassage : classes.bringMassage}>
                                 {item.message}
                                 {item.userId}
                             </div>

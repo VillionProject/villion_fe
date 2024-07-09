@@ -17,26 +17,20 @@ import bookImg10 from "../../../src/asset/books/image 10.png"
 import HomeBar from "../atoms/HomeBar";
 import Header from "./Header";
 import Footer from "./Footer";
-import axios from "axios";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const Home = () => {
 
+    const userInfo = useSelector(state => state.loginCheck.loginInfo);
+    const nav = useNavigate();
+
     useEffect(() => {
-        axios.post("http://localhost:8000/api/v1/user/signup", {
-            email: "tpdls960@naver.com",
-            libraryName: "떼잉이의또써꽌",
-            password: "qwe123"
-        }, {
-            headers : {
-                "Content-Type" : "application/json"
-            }
-        }).then((res) => {
-
-        }).catch((err) => {
-            console.error(err);
-        });
+        if (!userInfo.login) {
+            nav('/login');
+            return;
+        }
     }, []);
-
 
     return (
         <div>
@@ -52,6 +46,9 @@ const Home = () => {
                             </svg>
                         </div>
                         <div className={classes.topSvgWrap}>
+                            {/*<div style={{width: '35px', height: '35px', borderRadius : '50%', background : 'black'}}></div>*/}
+                            {/*<div style={{width: '35px', height: '35px', borderRadius : '50%', background : 'black'}}></div>*/}
+                            {/*<div style={{width: '35px', height: '35px', borderRadius : '50%', background : 'black'}}></div>*/}
                             <svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 25 24"
                                  fill="none">
@@ -90,48 +87,48 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className={classes.bookListContainer}>
-                        <div className={classes.bookTitleWrap}>
-                            <div>인기있는 책</div>
-                            <div>더보기</div>
-                        </div>
+                    {/*<div className={classes.bookListContainer}>*/}
+                    {/*    <div className={classes.bookTitleWrap}>*/}
+                    {/*        <div>인기있는 책</div>*/}
+                    {/*        <div>더보기</div>*/}
+                    {/*    </div>*/}
 
-                        <div className={classes.bookContainer}>
-                            <img src={bookImg5} className={classes.book} alt="Logo Description"/>
-                            <img src={bookImg7} className={classes.book} alt="Logo Description"/>
-                            <img src={bookImg8} className={classes.book} alt="Logo Description"/>
-                        </div>
-                    </div>
+                    {/*    <div className={classes.bookContainer}>*/}
+                    {/*        <img src={bookImg5} className={classes.book} alt="Logo Description"/>*/}
+                    {/*        <img src={bookImg7} className={classes.book} alt="Logo Description"/>*/}
+                    {/*        <img src={bookImg8} className={classes.book} alt="Logo Description"/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
-                    <div className={classes.bookListContainer}>
-                        <div className={classes.bookTitleWrap}>
-                            <div>인기있는 책</div>
-                            <div>더보기</div>
-                        </div>
+                    {/*<div className={classes.bookListContainer}>*/}
+                    {/*    <div className={classes.bookTitleWrap}>*/}
+                    {/*        <div>인기있는 책</div>*/}
+                    {/*        <div>더보기</div>*/}
+                    {/*    </div>*/}
 
-                        <div className={classes.bookContainer}>
-                            <img src={bookImg5} className={classes.book} alt="Logo Description"/>
-                            <img src={bookImg7} className={classes.book} alt="Logo Description"/>
-                            <img src={bookImg8} className={classes.book} alt="Logo Description"/>
-                        </div>
-                    </div>
+                    {/*    <div className={classes.bookContainer}>*/}
+                    {/*        <img src={bookImg5} className={classes.book} alt="Logo Description"/>*/}
+                    {/*        <img src={bookImg7} className={classes.book} alt="Logo Description"/>*/}
+                    {/*        <img src={bookImg8} className={classes.book} alt="Logo Description"/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
 
-                    <div className={classes.bookListContainer}>
-                        <div className={classes.bookTitleWrap}>
-                            <div>인기있는 책</div>
-                            <div>더보기</div>
-                        </div>
+                    {/*<div className={classes.bookListContainer}>*/}
+                    {/*    <div className={classes.bookTitleWrap}>*/}
+                    {/*        <div>인기있는 책</div>*/}
+                    {/*        <div>더보기</div>*/}
+                    {/*    </div>*/}
 
-                        <div className={classes.bookContainer}>
-                            <img src={bookImg5} className={classes.book} alt="Logo Description"/>
-                            <img src={bookImg7} className={classes.book} alt="Logo Description"/>
-                            <img src={bookImg8} className={classes.book} alt="Logo Description"/>
-                        </div>
-                    </div>
+                    {/*    <div className={classes.bookContainer}>*/}
+                    {/*        <img src={bookImg5} className={classes.book} alt="Logo Description"/>*/}
+                    {/*        <img src={bookImg7} className={classes.book} alt="Logo Description"/>*/}
+                    {/*        <img src={bookImg8} className={classes.book} alt="Logo Description"/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </Center>
 
-            <img className={classes.BottomAd} src={bookImg9} alt="Logo Description"/>
+            {/*<img className={classes.BottomAd} src={bookImg9} alt="Logo Description"/>*/}
 
             <Footer>
                 <HomeBar></HomeBar>
