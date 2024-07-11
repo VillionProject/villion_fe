@@ -14,7 +14,7 @@ const initialIsLoginState = {
       phoneNumber: "",
       profileImage : "",
       userId: "",
-      yearlyReadingTarget: ""
+      yearlyReadingTarget: "",
   }
 
 }
@@ -27,6 +27,31 @@ const loginCheckSlise = createSlice({
     loginInfoSet(state, action) {
       state.loginInfo = action.payload;
     },
+
+    libNameSet(state, action) {
+      state.loginInfo.libraryName = action.payload
+    },
+
+      libNameStatus(state, action) {
+          state.loginInfo.libraryStatus = action.payload
+      },
+
+      yearlyReadingTargetSet(state, action) {
+          state.loginInfo.yearlyReadingTarget = action.payload
+      },
+
+      interestCategorySet(state, action) {
+          state.loginInfo.interestCategory = action.payload
+      },
+
+      locateSet(state, action) {
+          state.loginInfo.base_location_id = action.payload
+      },
+
+
+
+
+
 
     isLogin(state, action) {
       state.loginInfo.isLogin = action.payload;

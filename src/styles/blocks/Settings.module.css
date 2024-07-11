@@ -169,13 +169,14 @@
     flex-direction: column;
     text-align: center;
     cursor: pointer;
-}
 
-.imgArea {
-    margin-bottom: 4px;
-}
 
-.subMenu img {
-    width: 20px;
-    height: 20px;
+    .imgArea {
+        margin-bottom: 4px;
+    }
+
+    .subMenu img {
+        width: 20px;
+        height: 20px;
+    }
 }

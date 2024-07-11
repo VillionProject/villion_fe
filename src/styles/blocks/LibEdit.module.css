@@ -1,0 +1,84 @@
+.topArea {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 8vw 0;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 4.5vw;
+    font-weight: 600;
+}
+
+.myLibInfo {
+    margin-bottom: 20px;
+}
+
+.myLibInter {
+    width: 80%;
+    margin: 0 auto;
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+.myLibInter p {
+    margin-bottom: 15px;
+}
+
+.interArea {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.inter {
+    /*width: 20%;*/
+    margin-bottom: 5px;
+    background: #EAF2FF;
+    padding: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.3s, color 0.3s; /* 글씨색 전환 애니메이션 추가 */
+}
+
+.myLibState {
+    width: 80%;
+    margin: 0 auto;
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+    margin-bottom: 40px;
+}
+
+
+.statusText {
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.myLibGoal {
+    margin: 0 auto;
+    font-weight: 400;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-top: 30px;
+}
+
+.myLibGoal p:last-child {
+    color: #71727A;
+}
+
+.my {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 35px;
+}
