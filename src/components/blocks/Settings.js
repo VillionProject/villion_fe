@@ -1,13 +1,19 @@
 import React from 'react';
 import classes from '../../styles/blocks/Settings.module.css'
-import profileImg from '../../asset/images/Avatar.png';
 import editImg from '../../asset/images/Edit.png';
 import arrow from '../../asset/images/ArrowRight.png';
 import chat from '../../asset/images/chat.png';
 import friend from '../../asset/images/friends.png';
 import setting from '../../asset/images/setting.png';
+import {useNavigate} from "react-router-dom";
 
 const Settings = () => {
+    const nav = useNavigate();
+
+    const linkMethods = (keyword) => {
+        nav(keyword)
+    }
+
     return (
         <div>
             <div className={classes.wrap}>
@@ -28,7 +34,7 @@ const Settings = () => {
 
                     <div className={classes.myInfo}>
                         <ul>
-                            <li>도서관 정보</li>
+                            <li onClick={() => {linkMethods("/libEdit")}}>도서관 정보</li>
                             <li>💙 찜 도서관</li>
                             <li>💛 찜 도서</li>
                             <li>장바구니</li>

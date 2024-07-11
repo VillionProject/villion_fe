@@ -12,3 +12,14 @@ export const userSignUp = (email, password, libraryName) => apiClient.post(`/api
     password,
     libraryName
 })
+
+export const updateLibrary = (id, libraryName, libraryStatus, interstCategory, yearlyReadingTarget, base_location_id) => {
+    return apiClient.put(`/api/v1/user/updateLibrary/${id}`, {
+        libraryName,
+        libraryStatus,
+        interstCategory,
+        yearlyReadingTarget,
+        base_location_id
+    });
+};
+

@@ -5,6 +5,7 @@ import Home from "./components/blocks/Home";
 import SignUp from "./components/blocks/SignUp";
 import Chatting from "./components/blocks/Chatting";
 import Settings from "./components/blocks/Settings";
+import LibEdit from "./components/blocks/LibEdit";
 
 const router = createBrowserRouter([
   {
@@ -26,9 +27,14 @@ const router = createBrowserRouter([
   {
     path : '/chatting',
     element : <Chatting />,
-  },{
+  },
+  {
     path : '/settings',
     element : <Settings />,
+  },
+  {
+    path : '/libEdit',
+    element : <LibEdit />,
   }
 
 
