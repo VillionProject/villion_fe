@@ -18,23 +18,32 @@ const Chatting = () => {
     const messageBoxRef = useRef(null); // useRef로 메시지 박스를 참조
     const maxLength = 100; // 최대 글자 수
     const userInfo = useSelector(state => state.loginCheck.loginInfo);
-
+    const [pastMessages, setPastMessages] = useState([]);
 
     useEffect(() => {
 
 
-        const socket = new SockJS('http://localhost:8082/stomp-endpoint');
+        const socket = new SockJS('http://localhost:8088/stomp-endpoint');
         const stomp = Stomp.over(socket);
 
         stomp.connect({}, (frame) => {
             setStompClient(stomp);
             console.log('Connected: ' + frame);
 
-            stomp.subscribe('/topic/greetings', (greeting) => {
-                const parseMessage = JSON.parse(greeting.body);
-
+            // stomp.subscribe(`/user/${libraryName}/queue/messages`, (greetings) => {
+            stomp.subscribe(`/user/${userInfo.userId}/queue/messages`, (greetings) => {
+                const parseMessage = JSON.parse(greetings.body);
+                console.log(parseMessage)
                 setGreetings((prevState) => [...prevState, parseMessage]);
             });
+
+            // stomp.subscribe(`/user/public`, (greetings) => {
+            //     const parseMessage = JSON.parse(greetings.body);
+            //
+            //     setGreetings((prevState) => [...prevState, parseMessage]);
+            // });
+
+
         });
 
         // 컴포넌트가 언마운트될 때 WebSocket 연결 해제
@@ -47,6 +56,7 @@ const Chatting = () => {
 
     useEffect(() => {
 
+
         // 메시지가 추가될 때마다 스크롤을 맨 아래로 이동
         if (messageBoxRef.current) {
             messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
@@ -54,15 +64,22 @@ const Chatting = () => {
         }
     }, [greetings]);
 
-    const sendName = () => {
+
+
+    const sendMessage = () => {
         const obj = {
-            userId: userInfo.userId,
-            libraryName: userInfo.libraryName,
-            message: inputMessage
+            senderId: userInfo.userId,
+            // senderId: "140",
+            senderLibraryName: userInfo.libraryName,
+            content: inputMessage,
+
+            recipientId: 147, // target user ID / 책 주인 ID
+            recipientLibraryName: "떼바떼바떼바바", // target user name
+            timestamp: new Date()
         };
 
 
-        stompClient.send('/app/hello', {}, JSON.stringify(obj));
+        stompClient.send('/app/chat', {}, JSON.stringify(obj));
         setInputMessage(''); // 메시지 전송 후 입력 필드 초기화
 
 
@@ -115,10 +132,10 @@ const Chatting = () => {
                     {greetings.map((item, idx) => (
                         <div key={idx} className={item.userId === userInfo.userId ? classes.sendMassageBox : classes.bringMassageBox}>
                             <div className={item.userId === userInfo.userId  ? classes.sendUserName : classes.bringUserName}>
-                                {item.libraryName}
+                                {item.senderLibraryName}
                             </div>
                             <div className={item.userId === userInfo.userId  ? classes.sendMassage : classes.bringMassage}>
-                                {item.message}
+                                {item.content}
                             </div>
                         </div>
                     ))}
@@ -128,7 +145,7 @@ const Chatting = () => {
             <Footer>
                 <div className={classes.messageWrap}>
                     <input className={classes.inputMessage} onChange={handleInputChange} value={inputMessage} type="text" placeholder="메세지를 입력하세요" />
-                    <img onClick={sendName} className={classes.inputIcon} src={sendPlaneIcon} alt="메세지 보내기" />
+                    <img onClick={sendMessage} className={classes.inputIcon} src={sendPlaneIcon} alt="메세지 보내기" />
                 </div>
             </Footer>
         </div>
