@@ -8,6 +8,7 @@ import Bell from "../../asset/images/Bell.svg";
 import Heart from "../../asset/images/Heart_Outlined.svg";
 import Bag from "../../asset/images/Shopping_Bag_Outlined.svg";
 import Header from "./Header";
+import axios from "axios";
 
 const Mbti2 = () => {
     const [questions, setQuestions] = useState([]);
@@ -19,26 +20,39 @@ const Mbti2 = () => {
     const nav = useNavigate();
 
     useEffect(() => {
-        // Mock data
-        const mockQuestions = [
-            {
-                category: 'Category 1',
-                questions: [
-                    { question: '주말에 오랜만에 집에서 하루 종일 책을 읽기로 했습니다. 1. 책을 읽는 동안 혼자 조용히 깊이 빠져들 수 있어서 좋아요 // 2. 책을 읽다가 잠깐 다른 사람과 의견을 나누거나 이야기를 나누고 싶어요' },
-                    { question: 'Question 1. Choice C // 2. Choice D' },
-                ],
-            },
-            {
-                category: 'Category 2',
-                questions: [
-                    { question: 'Question 1. Choice E // 2. Choice F' },
-                    { question: 'Question 1. Choice G // 2. Choice H' },
-                ],
-            },
-        ];
 
-        setQuestions(mockQuestions);
+        axios.get('http://localhost:8000/api/v1/user/questions/results').then((res) => {
+
+            setQuestions(res.data.questions);
+
+        }).catch((err) => {
+
+        })
+
+
+
+        // Mock data
+        // const mockQuestions = [
+        //     {
+        //         category: 'Category 1',
+        //         questions: [
+        //             { question: '주말에 오랜만에 집에서 하루 종일 책을 읽기로 했습니다. 1. 책을 읽는 동안 혼자 조용히 깊이 빠져들 수 있어서 좋아요 // 2. 책을 읽다가 잠깐 다른 사람과 의견을 나누거나 이야기를 나누고 싶어요' },
+        //             { question: 'Question 1. Choice C // 2. Choice D' },
+        //         ],
+        //     },
+        //     {
+        //         category: 'Category 2',
+        //         questions: [
+        //             { question: 'Question 1. Choice E // 2. Choice F' },
+        //             { question: 'Question 1. Choice G // 2. Choice H' },
+        //         ],
+        //     },
+        // ];
+        //
+        // setQuestions(mockQuestions);
     }, []);
+
+
 
     const handleChoiceSelect = (choice) => {
         setSelectedChoice(choice);
@@ -46,48 +60,81 @@ const Mbti2 = () => {
         const currentCategory = questions[currentCategoryIndex];
         const currentQuestion = currentCategory.questions[currentQuestionIndex];
 
-        // Mocking the POST request response
-        const mockPostResponse = {
-            data: {
-                // Simulate response data here if needed
-            },
-        };
+        // 카테고리질문/질문번호/선택번호
+        axios.post(`http://localhost:8000/api/v1/user/questions/${currentCategoryIndex}/${currentQuestionIndex}/${choice}`)
+            .then((response) => {
+                // 질문의 번호가 (카테고리의 개수 - 1)와 같다면 .. ?
 
-        if (currentQuestionIndex === currentCategory.questions.length - 1) {
-            if (currentCategoryIndex === questions.length - 1) {
-                fetchMbtiResult();
-                setCurrentCategoryIndex(currentCategoryIndex + 1);
-            } else {
-                setCurrentCategoryIndex(currentCategoryIndex + 1);
-                setCurrentQuestionIndex(0);
-            }
-        } else {
-            setCurrentQuestionIndex(currentQuestionIndex + 1);
-        }
+                console.log(currentQuestionIndex)
+                console.log(currentCategory.questions.length - 1)
+                console.log("===============")
+
+                // 현재 질문 번호와 카테고리 질문 번호가 같으면
+                // 카테고리 질문이 끝나면(I/E 카테고리의 질문이 끝나면)
+                if (currentQuestionIndex === currentCategory.questions.length - 1) {
+                    console.log("## " + currentQuestionIndex)
+                    console.log("## " + questions.length - 1);
+                    console.log("===============")
+                    // 카테고리의 번호가 (질문의 개수 - 1)와 같다면 .. ? ( 마지막 질문이 마치고 난 후 )
+                    // 마지막 카테고리인 P/J 인덱스()와 질문 인덱스(2)가 같다면, 결과 받기(질문 끝)
+                    if (currentCategoryIndex === questions.length - 1) {
+
+                        // mbti 결과받기
+                        fetchMbtiResult();
+
+                        // 카테고리의 개수를 질문의 개수랑 같게 맞춰주면.. 결과값이 보여주게 해놨음..
+                        setCurrentCategoryIndex(currentCategoryIndex + 1);
+                    } else {
+                        // 카테고리가 변경될 때.
+
+                        axios.get('http://localhost:8000/api/v1/user/questions/results').then((res) => {
+                            setQuestions(res.data.questions);
+                            setCurrentCategoryIndex(currentCategoryIndex + 1);
+                            setCurrentQuestionIndex(0);
+                        }).catch((err) => {
+
+                        });
+                    }
+
+                } else {
+
+                    setCurrentQuestionIndex(currentQuestionIndex + 1);
+                }
+            })
+            .catch((error) => {
+                // Handle error
+            });
+
+
+        // Mocking the POST request response
+        // const mockPostResponse = {
+        //     data: {
+        //         // Simulate response data here if needed
+        //     },
+        // };
+
+
     };
 
     const fetchMbtiResult = () => {
-        // Mocking the GET request response for MBTI results
-        const mockMbtiResult = {
-            type: 'INTJ',
-        };
 
-        setMbti(mockMbtiResult.type);
+        axios.get('http://localhost:8000/api/v1/user/questions/results')
+            .then((res) => {
+                // console.log(res.data)
+                setMbti(res.data.type);
+                // axios.get(`http://localhost:8000/api/v1/user/mbti/${res.data.type}`)
+                //     .then((res) => {
+                //         debugger
+                //         console.log(res)
+                //         setMbtiType(res.data);
+                //     })
+                //     .catch((err) => {
+                //
+                //     });
+            })
+            .catch((err) => {
 
-        // Mocking the GET request response for MBTI type details
-        const mockMbtiTypeDetails = {
-            hashtag: 'Strategist,Architect,Planner',
-            subTitle: 'The Mastermind',
-            trait: 'INTJs are known for their strategic thinking and planning abilities...',
-            jobRecommend: [
-                { jobTitle: 'Scientist' },
-                { jobTitle: 'Engineer' },
-            ],
-            bestCompatibility: 'ENTP',
-            worstCompatibility: 'ESFP',
-        };
-
-        setMbtiType(mockMbtiTypeDetails);
+            });
     };
 
     const cleanQuestionHeader = (question) => {
@@ -107,7 +154,9 @@ const Mbti2 = () => {
     };
 
     const reloadPage = async () => {
-        // Mocking the clear action
+
+        const data = await axios.post('http://localhost:8000/api/v1/user/questions/clear');
+
         nav('/mbtiStart');
         // window.location.reload();
     };
