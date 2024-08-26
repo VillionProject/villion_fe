@@ -1,7 +1,57 @@
 .signUpBox {
-    padding-top: 30vw;
+    padding-top: 15vw;
 }
 
 .signUpDetail {
     margin-bottom: 10vw;
+}
+
+.checkboxContainer {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.checkboxLabel {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+}
+
+.customCheckbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+.customCheckbox:checked {
+    border-color: #007bff;
+    background-color: #007bff;
+}
+
+.customCheckbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 5px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.rentalWrap {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 30px;
 }

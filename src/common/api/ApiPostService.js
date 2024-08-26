@@ -23,3 +23,19 @@ export const updateLibrary = (id, libraryName, libraryStatus, interstCategory, y
     });
 };
 
+export const registerBook = (ownerUserId, bookName, category, productStatus, stockQuantity, rentalPrice, rentalMethod, rentalLocation, description, rentable, purchasable, productImg) => {
+    return apiClient.post(`/api/v1/user/addProduct/${ownerUserId}`, {
+        ownerUserId,
+        bookName,
+        category,
+        productStatus,
+        stockQuantity,
+        rentalPrice,
+        rentalMethod,
+        rentalLocation,
+        description,
+        rentable,
+        purchasable,
+        productImg
+    });
+};

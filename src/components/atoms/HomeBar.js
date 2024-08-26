@@ -7,7 +7,7 @@ import LIke from "../../../src/asset/images/LIke.svg"
 import User from "../../../src/asset/images/User.svg"
 import {useNavigate} from "react-router-dom";
 
-const HomeBar = () => {
+const HomeBar = (props) => {
 
     const nav = useNavigate();
 
@@ -15,10 +15,16 @@ const HomeBar = () => {
         nav(keyword);
     }
 
+    const linkMethods2 = (keyword) => {
+        nav(`?page=${keyword}`);
+    }
+
+
+
     return (
         <div className={classes.homeBarOutLined}>
             <div className={classes.homeBarContainer}>
-                <div className={classes.barDetailWrap}>
+                <div className={classes.barDetailWrap} onClick={() => {props.setCurrPageSetting("Home")}}>
                     <img src={House} className={classes.bar} alt="Logo Description"/>
                     <p>홈</p>
                 </div>
@@ -26,11 +32,11 @@ const HomeBar = () => {
                     <img src={Group} className={classes.bar} alt="Logo Description"/>
                     <p>채팅</p>
                 </div>
-                <div className={classes.barDetailWrap}>
+                <div className={classes.barDetailWrap} onClick={() => {linkMethods("/addProduct")}}>
                     <img src={Plus} className={classes.bar} alt="Logo Description"/>
                     <p>책 등록</p>
                 </div>
-                <div className={classes.barDetailWrap}>
+                <div className={classes.barDetailWrap} onClick={() => {props.setCurrPageSetting("recommended")}}>
                     <img src={LIke} className={classes.bar} alt="Logo Description"/>
                     <p>추천</p>
                 </div>

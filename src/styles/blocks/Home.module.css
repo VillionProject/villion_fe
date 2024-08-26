@@ -44,7 +44,8 @@
 
 .bookListWarp {
     overflow: auto;
-    height: 101vw;
+    padding-bottom: 10vh;
+    /*height: 101vw;*/
 }
 
 /* 스크롤바를 감춥니다. */
@@ -68,14 +69,28 @@
     justify-content: space-between;
     font-weight: 500;
     padding: 2vw 2vw;
-
+    margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .bookContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    gap: 30px;
+    cursor: pointer;
 }
+
+.imgWrap {
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.imgWrap img {
+    height: 100%;
+    width: 100%;
+}
+
 
 .book {
     width: 27vw;
