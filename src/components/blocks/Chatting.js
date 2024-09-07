@@ -21,7 +21,7 @@ const Chatting = () => {
     const [pastMessages, setPastMessages] = useState([]);
 
     useEffect(() => {
-        const socket = new SockJS('http://localhost:8088/stomp-endpoint');
+        const socket = new SockJS('http://34.121.58.202:8088/stomp-endpoint');
         const stomp = Stomp.over(socket);
 
         stomp.connect({}, (frame) => {

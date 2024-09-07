@@ -27,6 +27,10 @@
     margin-left: 10vw;
 }
 
+.topSvgWrap svg, .topSvgWrap img {
+    cursor: pointer;
+}
+
 .svgContainer {
     width: 25px;
     height: 24px;

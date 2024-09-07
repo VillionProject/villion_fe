@@ -21,7 +21,7 @@ const Mbti2 = () => {
 
     useEffect(() => {
 
-        axios.get('http://localhost:8000/api/v1/user/questions/results').then((res) => {
+        axios.get('http://34.121.58.202:8000/api/v1/user/questions/results').then((res) => {
 
             setQuestions(res.data.questions);
 
@@ -61,7 +61,7 @@ const Mbti2 = () => {
         const currentQuestion = currentCategory.questions[currentQuestionIndex];
 
         // 카테고리질문/질문번호/선택번호
-        axios.post(`http://localhost:8000/api/v1/user/questions/${currentCategoryIndex}/${currentQuestionIndex}/${choice}`)
+        axios.post(`http://34.121.58.202:8000/api/v1/user/questions/${currentCategoryIndex}/${currentQuestionIndex}/${choice}`)
             .then((response) => {
                 // 질문의 번호가 (카테고리의 개수 - 1)와 같다면 .. ?
 
@@ -87,7 +87,7 @@ const Mbti2 = () => {
                     } else {
                         // 카테고리가 변경될 때.
 
-                        axios.get('http://localhost:8000/api/v1/user/questions/results').then((res) => {
+                        axios.get('http://34.121.58.202:8000/api/v1/user/questions/results').then((res) => {
                             setQuestions(res.data.questions);
                             setCurrentCategoryIndex(currentCategoryIndex + 1);
                             setCurrentQuestionIndex(0);
@@ -118,7 +118,7 @@ const Mbti2 = () => {
 
     const fetchMbtiResult = () => {
 
-        axios.get('http://localhost:8000/api/v1/user/questions/results')
+        axios.get('http://34.121.58.202:8000/api/v1/user/questions/results')
             .then((res) => {
                 // console.log(res.data)
                 setMbti(res.data.type);
@@ -155,7 +155,7 @@ const Mbti2 = () => {
 
     const reloadPage = async () => {
 
-        const data = await axios.post('http://localhost:8000/api/v1/user/questions/clear');
+        const data = await axios.post('http://34.121.58.202:8000/api/v1/user/questions/clear');
 
         nav('/mbtiStart');
         // window.location.reload();

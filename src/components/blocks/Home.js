@@ -15,6 +15,7 @@ import {useNavigate} from "react-router-dom";
 import {getProducts} from "../../common/api/ApiGetService";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import recomenImg from '../../asset/images/recomen.png';
+import searchImg from '../../asset/images/Search.png';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -31,6 +32,7 @@ const Home = () => {
     const nav = useNavigate();
     const [bookArray, setBookArray] = useState([]);
     const [currPage, setCurrPage] = useState('Home');
+
 
     useEffect(() => {
         if (!userInfo.login) {
@@ -61,6 +63,10 @@ const Home = () => {
         nav('/mbtiStart')
     }
 
+    const searchMethdos = () => {
+        nav('/search')
+    }
+
     return (
         <div>
             <Header>
@@ -83,11 +89,12 @@ const Home = () => {
                                  fill="none">
                                 <image href={Bell}/>
                             </svg>
-                            <svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 25 24"
-                                 fill="none">
-                                <image href={Heart}/>
-                            </svg>
+                            <img src={searchImg} onClick={searchMethdos} />
+                            {/*<svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg"*/}
+                            {/*     viewBox="0 0 25 24"*/}
+                            {/*     fill="none">*/}
+                            {/*    <image href={Heart}/>*/}
+                            {/*</svg>*/}
                             <svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 25 24"
                                  fill="none">

@@ -13,6 +13,7 @@ import RentalConfirm from "./components/blocks/RentalConfirm";
 import Recommended from "./components/blocks/Recommended";
 import Mbti2 from "./components/blocks/Mbti2";
 import MbtiStart from "./components/blocks/MbtiStart";
+import Search from "./components/blocks/Search";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
   {
     path : '/mbtiStart',
     element : <MbtiStart />,
+  },
+  {
+    path : '/search',
+    element : <Search />,
   }
 
 
