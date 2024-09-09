@@ -31,6 +31,10 @@
     cursor: pointer;
 }
 
+.topSvgWrap img {
+    height: 25px;
+}
+
 .svgContainer {
     width: 25px;
     height: 24px;

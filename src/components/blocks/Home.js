@@ -15,7 +15,7 @@ import {useNavigate} from "react-router-dom";
 import {getProducts} from "../../common/api/ApiGetService";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import recomenImg from '../../asset/images/recomen.png';
-import searchImg from '../../asset/images/Search.png';
+import searchImg from '../../asset/images/search.webp';
 
 // Import Swiper styles
 import 'swiper/css';

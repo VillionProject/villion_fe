@@ -4,6 +4,6 @@ import axios from "axios";
 export const apiClient = axios.create(
     {
         // baseURL : 'http://34.121.58.202:8000'
-        baseURL : 'http://localhost:8000'
+        baseURL : 'http://192.168.0.108:8000'
     }
 );
