@@ -7,7 +7,7 @@ import back from '../../asset/images/back.webp';
 import axios from "axios";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {FreeMode, Pagination} from "swiper/modules";
-import {getProductsByCategory} from "../../common/api/ApiGetService";
+import {getProducts, getProductsByCategory, getProductsBySearch} from "../../common/api/ApiGetService";
 import {useSelector} from "react-redux";
 import Loading from "./Loading";
 
@@ -20,18 +20,6 @@ const Search = () => {
     const [loading, setLoading] = useState(false);
     const [categoryBook, setCategoryBook] = useState([]);
     const userInfo = useSelector(state => state.loginCheck.loginInfo);
-
-    useEffect(() => {
-        getProductsByCategory(userInfo.userId)
-            .then((res) => {
-                if (res.status === 200) {
-
-                    setCategoryBook(res.data)
-                }
-            }).catch((err) => {
-
-        })
-    }, []);
 
     const backHandler = () => {
         nav('/home');
@@ -49,6 +37,13 @@ const Search = () => {
                 setLoading(false)
                 setSearchText2(e.target.value)
 
+                getProductsBySearch(searchText)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            setCategoryBook(res.data)
+                        }
+                    }).catch((err) => {
+                })
 
 
             }, 1000)

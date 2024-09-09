@@ -28,7 +28,7 @@ const HomeBar = (props) => {
                     <img src={House} className={classes.bar} alt="Logo Description"/>
                     <p>홈</p>
                 </div>
-                <div className={classes.barDetailWrap}>
+                <div className={classes.barDetailWrap} onClick={() => {linkMethods("/chatTest3")}}>
                     <img src={Group} className={classes.bar} alt="Logo Description"/>
                     <p>채팅</p>
                 </div>

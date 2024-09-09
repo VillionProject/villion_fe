@@ -139,6 +139,31 @@ const Home = () => {
                             </div>
                         </div>
 
+                        <div className={classes.bookListContainer}>
+                            <div className={classes.bookTitleWrap}>
+                                <div>인기 있는 책</div>
+                                <div>더보기</div>
+                            </div>
+                            <div className={classes.bookContainer}>
+                                <Swiper
+                                    slidesPerView={3}
+                                    spaceBetween={30}
+                                    freeMode={true}
+                                    modules={[FreeMode, Pagination]}
+                                    className="mySwiper"
+                                >
+                                    {bookArray.reverse().map((item, idx) => (
+                                        <SwiperSlide>
+                                            <div key={idx} onClick={() => {productDetail(item)}} key={idx} className={classes.imgWrap}>
+                                                <img src={item.productImg} className={classes.book} alt="Logo Description"/>
+                                            </div>
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                            </div>
+                        </div>
+
+
                         {/*<div className={classes.bookListContainer}>*/}
                         {/*    <div className={classes.bookTitleWrap}>*/}
                         {/*        <div>인기있는 책</div>*/}

@@ -9,6 +9,7 @@ export const getProducts = (userId) => apiClient.get(`/api/v1/user/getProductsBy
 export const getProductsByUser = (productId) => apiClient.get(`/api/v1/product/getLibraryWithProduct/${productId}`)
 
 export const getProductsByCategory = (productId) => apiClient.get(`/api/v1/product/getProductsByCategory/${productId}`)
+export const getProductsBySearch = (searchText) => apiClient.get(`/api/v1/product/searchProduct/${searchText}`)
 
 
 

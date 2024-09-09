@@ -6,9 +6,11 @@ import chat from '../../asset/images/chat.png';
 import friend from '../../asset/images/friends.png';
 import setting from '../../asset/images/setting.png';
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const Settings = () => {
     const nav = useNavigate();
+    const userInfo = useSelector(state => state.loginCheck.loginInfo);
 
     const linkMethods = (keyword) => {
         nav(keyword)
@@ -22,14 +24,14 @@ const Settings = () => {
                 </div>
                 <div className={classes.userBackImg}>
                     {/*<img src={profileImg} />*/}
-                    <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa2NApZ828bZQQmpKTX0J1k4lsBfDPA0Yd3w&s" />
+                    <img src={userInfo.profileImage} />
                     <img src={editImg} />
                 </div>
 
                 <div className={classes.contentsWrap}>
                     <div className={classes.myNameArea}>
-                        <p className={classes.libName}>세삼이의 도서관</p>
-                        <p className={classes.tagName}>@SESAM123</p>
+                        <p className={classes.libName}>{userInfo.libraryName}</p>
+                        <p className={classes.tagName}>@{userInfo.email}</p>
                     </div>
 
                     <div className={classes.myInfo}>
@@ -77,7 +79,7 @@ const Settings = () => {
                             <div className={classes.imgArea}>
                                 <img src={friend} />
                             </div>
-                            <p>Friends</p>
+                            <p>문의하기</p>
                         </div>
                         <div className={classes.subMenu}>
                             <div className={classes.imgArea}>

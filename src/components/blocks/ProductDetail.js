@@ -16,11 +16,13 @@ import 'swiper/css/pagination';
 import '../../styles/blocks/swiper.css';
 import {FreeMode, Pagination} from "swiper/modules";
 import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 const ProductDetail = () => {
     const [bookInfo, setBookInfo] = useState('');
     const [libUserInfo, setLibUserInfo] = useState([]);
     const [categoryBook, setCategoryBook] = useState([]);
     const nav = useNavigate();
+    const userInfo = useSelector(state => state.loginCheck.loginInfo);
 
     useEffect(() => {
         const queryString = window.location.search;
@@ -63,9 +65,7 @@ const ProductDetail = () => {
             case '대여' :
                 const rentalObj =  {
                     title : '대여하기',
-                    bookName : bookInfo.bookName,
-                    productStatus : bookInfo.productStatus,
-                    rentalPrice : bookInfo.rentalPrice,
+                    info : bookInfo,
                 }
 
                 nav(`/rentalConfirm?data=${JSON.stringify(rentalObj)}`)
@@ -73,11 +73,10 @@ const ProductDetail = () => {
             break
 
             case '구매' :
+
                 const tradeObj =  {
                     title : '구매하기',
-                    bookName : bookInfo.bookName,
-                    productStatus : bookInfo.productStatus,
-                    rentalPrice : bookInfo.rentalPrice,
+                    info : bookInfo
                 }
 
                 nav(`/rentalConfirm?data=${JSON.stringify(tradeObj)}`)
@@ -206,10 +205,19 @@ const ProductDetail = () => {
             {/*    </div>*/}
             {/*</div>*/}
 
-            <div className={classes.btnArea}>
-                <div onClick={() => {rentalMethods('대여')}}><p>바로 대여</p></div>
-                <div onClick={() => {rentalMethods('구매')}}><p>바로 구매</p></div>
-            </div>
+            {bookInfo.ownerUserId != userInfo.userId &&
+                <div className={classes.btnArea}>
+                    <div onClick={() => {rentalMethods('대여')}}><p>바로 대여</p></div>
+                    <div onClick={() => {rentalMethods('구매')}}><p>바로 구매</p></div>
+                </div>}
+
+            {bookInfo.ownerUserId == userInfo.userId &&
+                <div className={classes.btnArea}>
+                    <div><p>내가올린</p></div>
+                    <div><p>게시물임</p></div>
+                </div>
+            }
+
         </div>
     );
 };

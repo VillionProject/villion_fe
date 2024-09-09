@@ -47,7 +47,7 @@
 .topAd {
     width: 100%;
     height: 12vh; /* vh 단위 사용: 뷰포트 높이의 10% */
-    background-color: blue;
+
 }
 
 .bookListWarp {

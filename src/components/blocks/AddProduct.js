@@ -12,6 +12,8 @@ import ConfirmPopup from "./ConfirmPopup";
 import {emailCheck, passCheck} from "../../common/Reg";
 import {registerBook, userSignUp} from "../../common/api/ApiPostService";
 import {useSelector} from "react-redux";
+import {categoryMenu, rentalMenu, statusMenu} from "../../common/Menus";
+import CategorySelect from "./CategorySelect";
 
 const AddProduct = () => {
     const navigate = useNavigate();
@@ -20,6 +22,7 @@ const AddProduct = () => {
     const [rentalAvailability, setRentalAvailability] = useState(false);
     const [rentalAvailability2, setRentalAvailability2] = useState(false);
     const [category, setCategory] = useState('');
+    const [category2, setCategory2] = useState('');
     const [stockQuantity, setStockQuantity] = useState(0);
     const [rentalPrice, setRentalPrice] = useState(0);
     const [rentalMethod, setRentalMethod] = useState('');
@@ -107,14 +110,33 @@ const AddProduct = () => {
             <Center>
                 <div className={classes.signUpDetail}>
                     <Input value="책 이름" placeholder="책 이름을 입력하세요. 변경 불가능합니다." type="text" onChange={bookNameChangeMethod} />
-                    <Input value="카테고리" placeholder="카테고리를 입력하세요." type="text" onChange={categoryChangeMethod} />
-                    <Input value="책의 상태" placeholder="책 상태를 입력하세요." type="text" onChange={productStatusChangeMethod} />
+
+                    <div className={classes.selectWrap}>
+                        <p>카테고리</p>
+                        <CategorySelect setCategory={setCategory} menuList={categoryMenu} />
+                    </div>
+
+                    {/*<Input value="카테고리" placeholder="카테고리를 입력하세요." type="text" onChange={categoryChangeMethod} />*/}
+                    {/*<Input value="책의 상태" placeholder="책 상태를 입력하세요." type="text" onChange={productStatusChangeMethod} />*/}
+                    <div className={classes.selectWrap}>
+                        <p>책의 상태</p>
+                        <CategorySelect setCategory={setProductStatus} menuList={statusMenu} />
+                    </div>
+
+
                     <Input value="개수" placeholder="5" type="text" onChange={stockQuantityChangeMethod} />
                     <Input value="대여 가격" placeholder="4000" type="text" onChange={rentalPriceChangeMethod} />
-                    <Input value="대여 방법" placeholder="만나서 할래요" type="text" onChange={rentalMethodChangeMethod} />
+                    <div className={classes.selectWrap}>
+                        <p>대여 방법</p>
+                        <CategorySelect setCategory={setRentalMethod} menuList={rentalMenu} />
+                    </div>
+                    {/*<Input value="대여 방법" placeholder="만나서 할래요" type="text" onChange={rentalMethodChangeMethod} />*/}
                     <Input value="거래 지역" placeholder="인계동" type="text" onChange={rentalLocationChangeMethod} />
                     <Input value="설명" placeholder="설명을 입력하세요" type="text" onChange={descriptionChangeMethod} />
                     <Input value="이미지 주소" placeholder="이미지주소를 입력하세요" type="text" onChange={imgChangeMethod} />
+
+
+
                     <div className={classes.rentalWrap}>
                         <div className={classes.checkboxContainer}>
                             <input type="checkbox" className={classes.customCheckbox} id="rentalAvailability" checked={rentalAvailability} onChange={rentalAvailabilityChangeMethod} />

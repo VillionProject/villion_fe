@@ -39,3 +39,19 @@ export const registerBook = (ownerUserId, bookName, category, productStatus, sto
         productImg
     });
 };
+
+export const addDeliveryOrder = (ownerUserId, renterUserId, userName, phoneNumber, address, deliveryMemo, rentalStartDate, rentalEndDate, shippingCost, usedPoints, orderList, paymentMethod) => {
+    return apiClient.post(`/api/v1/user/addDeliveryOrder/${ownerUserId}`, {
+        renterUserId,
+        userName,
+        phoneNumber,
+        address,
+        deliveryMemo,
+        rentalStartDate,
+        rentalEndDate,
+        shippingCost,
+        usedPoints,
+        orderList,
+        paymentMethod
+    });
+};
