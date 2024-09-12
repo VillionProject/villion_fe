@@ -51,6 +51,7 @@ const ChatModule = () => {
     }, []);
 
     const connect = (nick, fullName) => {
+
         const nicknameValue = nick.trim();
         const fullnameValue = fullName.trim();
 

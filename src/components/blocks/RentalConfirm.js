@@ -40,6 +40,11 @@ const RentalConfirm = () => {
 
     const paySubmit = () => {
 
+        if (currData.rentalMethod == 'FACE_TO_FACE') {
+            setIsMsgPopupOpen({show: true, msg: '구매신청 채팅으로 이동합니다.', gb : 'successRental'});
+            return;
+        }
+
         if (userName == '') {
             setIsMsgPopupOpen({show: true, msg: '이름을 입력해 주세요.', gb : ''});
             return ;
@@ -90,6 +95,11 @@ const RentalConfirm = () => {
 
     const paySubmit2 = () => {
 
+        if (currData.rentalMethod == 'FACE_TO_FACE') {
+            setIsMsgPopupOpen({show: true, msg: '대여신청 채팅으로 이동합니다.', gb : 'successRental'});
+            return;
+        }
+
         if (userName == '') {
             setIsMsgPopupOpen({show: true, msg: '이름을 입력해 주세요.', gb : ''});
             return ;
@@ -136,8 +146,8 @@ const RentalConfirm = () => {
         ).then((res) => {
             if(res.status == 200) {
 
-
-                setIsMsgPopupOpen({show: true, msg: '구매신청이 완료되었습니다.', gb : 'successRental'});
+                setIsMsgPopupOpen({show: true, msg: '대여신청이 완료되었습니다.', gb : 'success'});
+                // setIsMsgPopupOpen({show: true, msg: '대여신청이 완료되었습니다.', gb : 'successRental'});
 
             }
         }).catch((err) => {

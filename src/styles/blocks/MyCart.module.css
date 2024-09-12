@@ -1,0 +1,337 @@
+.cartContainer {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    background-color: #eee;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    color: #555;
+    transition: background-color 0.3s;
+}
+
+.tab:hover {
+    background-color: #ddd;
+}
+
+.active {
+    background-color: #2897FF;
+    color: white;
+}
+
+.tabContent {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+
+}
+
+.content h2 {
+    margin-top: 0;
+}
+
+.content p {
+    margin: 10px 0 0;
+    color: #666;
+}
+.searchHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4vw;
+    justify-content: space-between;
+}
+
+.searchHeader h2 {
+    font-weight: 600;
+}
+
+.headerLeftImg {
+    width: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.headerLeftImg img {
+    height: 7vw;
+}
+
+.headerInputArea {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.chattingContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;  /* 전체 화면 높이 */
+}
+
+.topWrap {
+    flex-shrink: 0;  /* 크기가 줄어들지 않도록 설정 */
+    /*height: 15vh;  !* 높이를 화면 높이의 15%로 설정 *!*/
+    width: 80%;  /* 전체 너비 */
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
+}
+
+.chattingWrap {
+    flex-grow: 1;  /* 남은 공간을 차지하도록 설정 */
+    background-color: white;  /* 배경 색상 */
+    width: 100%;  /* 전체 너비 */
+    overflow-y: auto; /* 내용이 넘칠 때 스크롤바 표시 */
+    -ms-overflow-style: none; /* IE 및 Edge에 기본 스크롤바 숨기기 */
+}
+
+.chattingWrap::-webkit-scrollbar {
+    display: none; /* Chrome 및 Safari에 기본 스크롤바 숨기기 */
+}
+
+.messageWrap {
+    flex-shrink: 0;  /* 크기가 줄어들지 않도록 설정 */
+    /*background-color: darkkhaki;  !* 배경 색상 *!*/
+    height: 100%;  /* 높이를 화면 높이의 15%로 설정 */
+    width: 100%;  /* 전체 너비 */
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 방향 가운데 정렬 */
+    justify-content: center; /* 수평 방향 가운데 정렬 */
+}
+
+
+.EndBtn {
+    background-color: rgba(238, 237, 237, 0.8); /* #EEEDED의 불투명도를 80%로 설정 */
+    height: 10vw;
+}
+
+.messageBox {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw; /* 메시지 박스 사이의 간격 설정 */
+    height: 100%;
+    padding: 2vw;
+    max-height: 100%;
+    /*overflow-y: auto; !* 내용이 넘칠 때 스크롤바 표시 *!*/
+}
+
+.firstMessage {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.firstMessage p {
+    margin-bottom: 15px;
+}
+
+.firstBookImg {
+    width: 80%;
+    height: 15%;
+}
+
+.bookDetailWrap {
+    display: flex;
+    flex-direction: row;
+    font-size: 3.5vw;
+    gap: 20px;
+}
+
+.bookDetailWrap img {
+    width: 110px;
+    height: 140px;
+}
+
+.bookDetailElement {
+
+}
+
+.bookName {
+    margin-bottom: 10px;
+}
+
+.bookPublisher {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    color: #666262;
+    margin-bottom: 85px;
+    gap: 10px;
+}
+.bookStatus {
+    display: flex;
+    font-size: 14px;
+    color: #666262;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.bringMassageBox {
+    background-color: #F8F9FE;
+    align-self: flex-start; /* 왼쪽 정렬 */
+}
+
+.sendMassageBox {
+    background-color: #2897FF;
+    align-self: flex-end; /* 오른쪽 정렬 */
+    gap: 2vw;
+}
+
+.bringUserName {
+    color: #71727A; /* 폰트 색상 설정 (원하는 색상 코드로 변경 가능) */
+    font-weight: bold; /* 폰트 굵게 설정 */
+    margin-bottom: 1vw;
+}
+
+.sendUserName {
+    color: #B4DBFF; /* 폰트 색상 설정 (원하는 색상 코드로 변경 가능) */
+    font-weight: bold; /* 폰트 굵게 설정 */
+    margin-bottom: 1vw;
+}
+
+.bringMassageBox, .sendMassageBox {
+    display: inline-block; /* 인라인 블록 요소로 설정 */
+    min-width: 30%; /* 최대 너비 설정 */
+    max-width: 80%; /* 최대 너비 설정 */
+    word-wrap: break-word; /* 긴 단어들이 텍스트 상자 바깥으로 넘치지 않도록 줄바꿈 */
+    padding: 2vw; /* 내부 여백 설정 */
+    border-radius: 8px; /* 모서리 둥글게 만들기 */
+}
+
+.bringMassage {
+    background-color: #F8F9FE;
+
+}
+.sendMassage {
+    background-color: #2897FF;
+    color: white;
+}
+
+.inputMessage {
+    background-color: #F8F9FE;
+    width: 90%;
+    height: 50px;
+    border-radius: 8px;
+    padding: 2vw;
+    box-sizing: border-box; /* 내부 여백 및 테두리를 포함한 전체 너비 설정 */
+    font-size: 16px; /* 폰트 크기 설정 */
+    margin: 2vw;
+}
+.inputIcon {
+    width: 40px; /* 아이콘 너비 */
+    height: 40px; /* 아이콘 높이 */
+    margin-right: 2vw; /* 오른쪽 정렬 */
+}
+
+.titleWrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.titleWrap h2 {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.titleWrap h2 span {
+    font-size: 14px;
+    color: #71727A;
+}
+
+.titleWrap .titleWrapInner {
+    display: flex;
+    gap: 5px;
+
+}
+
+.titleWrap .titleWrapInner p {
+    font-size: 18px;
+    color: #71727A;
+    cursor: pointer;
+}
+.line {
+    width: 100%;
+    height: 1px;
+    background: #d9dae6;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.summary1 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #71727A;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+.summary2 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #71727A;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+.summary3 {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-bottom: 30px;
+}
+
+.summary3 p {
+    font-weight: 600;
+}
+
+.summary3 p:last-child {
+    color: #2897FF;
+
+}
+/* Hide the default appearance of the checkbox */
+.purchaseCheckbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #71727A;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+}
+
+/* When the checkbox is checked, make the background red */
+.purchaseCheckbox:checked {
+    background-color: red;
+    border-color: red;
+}
+
+.purchaseCheckbox:checked::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    left: 4px;
+    top: 0px;
+}

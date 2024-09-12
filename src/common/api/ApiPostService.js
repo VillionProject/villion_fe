@@ -1,4 +1,5 @@
 import {apiClient} from "./ApiClient";
+import axios from "axios";
 
 
 export const userLogin = (email, password) => apiClient.post(`/api/v1/user/login2`, {
@@ -54,4 +55,54 @@ export const addDeliveryOrder = (ownerUserId, renterUserId, userName, phoneNumbe
         orderList,
         paymentMethod
     });
+};
+
+
+export const addCart = (userId, ownerUserId, productId, author, publisher, status, rentalQuantity, rentalPeriod, rentalPrice, rentable, purchasable, rentalMethod) => {
+    return apiClient.post(`/api/v1/user/addCart`, {
+        userId,
+        ownerUserId,
+        productId,
+        author,
+        publisher,
+        status,
+        rentalQuantity,
+        rentalPeriod,
+        rentalPrice,
+        rentable,
+        purchasable,
+        rentalMethod
+    });
+};
+
+
+export const deleteCart = (userId, productId) => {
+    return apiClient.post(`/api/v1/user/deleteCart/${userId}/${productId}`);
+};
+
+export const deleteAllCart = (userId) => {
+    return apiClient.post(`/api/v1/user/deleteAllCart/${userId}`);
+};
+
+export const wishedToggle = (userId, folderName, productId) => {
+    return apiClient.post(`/api/v1/user/${userId}/wishProduct/toggle`, {
+        folderName,
+        productId
+    });
+};
+
+export const mbtiMethods2 = (currentCategoryIndex, currentQuestionIndex, choice) => {
+    return apiClient.post(`/api/v1/user/questions/${currentCategoryIndex}/${currentQuestionIndex}/${choice}`);
+};
+
+export const mbtiMethods3 = () => {
+    return apiClient.post(`/api/v1/user/questions/clear`);
+};
+
+export const userMbtiSave = (userId, mbti) => {
+    return apiClient.post(`/api/v1/user/saveMbti/${userId}/${mbti}`);
+};
+
+export const userProfileImageChange = (userId, profileLink) => {
+    return apiClient.patch(`/api/v1/user/updateProfileImage/${userId}/${profileLink} `);
 };

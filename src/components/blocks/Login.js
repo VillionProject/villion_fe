@@ -15,6 +15,7 @@ import {userLogin, userSignUp} from "../../common/api/ApiPostService";
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {loginCheckAction} from "../../ducks/loginCheck";
+import {getProductsBySearch} from "../../common/api/ApiGetService";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -87,14 +88,22 @@ const Login = () => {
         navigate("/signup")
     }
 
+    const handleInputKeyDown = (e) => {
+
+        if (e.key === 'Enter') {
+
+            loginHandler()
+        }
+    };
+
     return (
         <div className={classes.loginBox}>
             <Logo></Logo>
             <Center>
                 <div>
                     <div className={classes.loginWrap}>
-                        <Input value="아이디" placeholder="아이디를 입력하세요." type="text" onChange={idChangeMethod}/>
-                        <Input value="비밀번호" placeholder="비밀번호를 입력하세요." type="password" onChange={pwdChangeMethod}/>
+                        <Input value="아이디"  placeholder="아이디를 입력하세요." type="text" onChange={idChangeMethod}/>
+                        <Input value="비밀번호" onKeyDown={handleInputKeyDown} placeholder="비밀번호를 입력하세요." type="password" onChange={pwdChangeMethod}/>
                         <div className={classes.detailBox}>
                             <p onClick={signupMethod}>아직 회원이 아니신가요 ?</p>
                             <p></p>

@@ -28,6 +28,10 @@ const loginCheckSlise = createSlice({
       state.loginInfo = action.payload;
     },
 
+    profileImgInfoSet(state, action) {
+      state.loginInfo.profileImage = action.payload;
+    },
+
     libNameSet(state, action) {
       state.loginInfo.libraryName = action.payload
     },

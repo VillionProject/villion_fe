@@ -9,6 +9,9 @@ import Heart from "../../asset/images/Heart_Outlined.svg";
 import Bag from "../../asset/images/Shopping_Bag_Outlined.svg";
 import Header from "./Header";
 import axios from "axios";
+import {categoryGetProduct, getProducts, mbtiCategoryResult, mbtiMethods1} from "../../common/api/ApiGetService";
+import {mbtiMethods2, mbtiMethods3, userMbtiSave} from "../../common/api/ApiPostService";
+import {useSelector} from "react-redux";
 
 const Mbti2 = () => {
     const [questions, setQuestions] = useState([]);
@@ -17,41 +20,22 @@ const Mbti2 = () => {
     const [selectedChoice, setSelectedChoice] = useState(null);
     const [mbti, setMbti] = useState('');
     const [mbtiType, setMbtiType] = useState({});
+    const [bookArray, setBookArray] = useState([]);
     const nav = useNavigate();
+    const userInfo = useSelector(state => state.loginCheck.loginInfo);
 
     useEffect(() => {
+        mbtiMethods1()
+            .then((res) => {
+                if(res.status == 200) {
+                    setQuestions(res.data.questions);
+                }
+            })
+            .catch((err) => {
 
-        axios.get('http://34.121.58.202:8000/api/v1/user/questions/results').then((res) => {
+            })
 
-            setQuestions(res.data.questions);
-
-        }).catch((err) => {
-
-        })
-
-
-
-        // Mock data
-        // const mockQuestions = [
-        //     {
-        //         category: 'Category 1',
-        //         questions: [
-        //             { question: '주말에 오랜만에 집에서 하루 종일 책을 읽기로 했습니다. 1. 책을 읽는 동안 혼자 조용히 깊이 빠져들 수 있어서 좋아요 // 2. 책을 읽다가 잠깐 다른 사람과 의견을 나누거나 이야기를 나누고 싶어요' },
-        //             { question: 'Question 1. Choice C // 2. Choice D' },
-        //         ],
-        //     },
-        //     {
-        //         category: 'Category 2',
-        //         questions: [
-        //             { question: 'Question 1. Choice E // 2. Choice F' },
-        //             { question: 'Question 1. Choice G // 2. Choice H' },
-        //         ],
-        //     },
-        // ];
-        //
-        // setQuestions(mockQuestions);
     }, []);
-
 
 
     const handleChoiceSelect = (choice) => {
@@ -61,7 +45,7 @@ const Mbti2 = () => {
         const currentQuestion = currentCategory.questions[currentQuestionIndex];
 
         // 카테고리질문/질문번호/선택번호
-        axios.post(`http://34.121.58.202:8000/api/v1/user/questions/${currentCategoryIndex}/${currentQuestionIndex}/${choice}`)
+        mbtiMethods2(currentCategoryIndex,currentQuestionIndex,choice)
             .then((response) => {
                 // 질문의 번호가 (카테고리의 개수 - 1)와 같다면 .. ?
 
@@ -87,7 +71,7 @@ const Mbti2 = () => {
                     } else {
                         // 카테고리가 변경될 때.
 
-                        axios.get('http://34.121.58.202:8000/api/v1/user/questions/results').then((res) => {
+                        mbtiMethods1().then((res) => {
                             setQuestions(res.data.questions);
                             setCurrentCategoryIndex(currentCategoryIndex + 1);
                             setCurrentQuestionIndex(0);
@@ -117,25 +101,48 @@ const Mbti2 = () => {
     };
 
     const fetchMbtiResult = () => {
-
-        axios.get('http://34.121.58.202:8000/api/v1/user/questions/results')
+        mbtiMethods1()
             .then((res) => {
-                // console.log(res.data)
                 setMbti(res.data.type);
-                // axios.get(`http://localhost:8000/api/v1/user/mbti/${res.data.type}`)
-                //     .then((res) => {
-                //         debugger
-                //         console.log(res)
-                //         setMbtiType(res.data);
-                //     })
-                //     .catch((err) => {
-                //
-                //     });
+
+                // 사용자 MBTI 저장
+                userMbtiSave(userInfo.userId, res.data.type)
+                    .then((res2) => {
+
+                        // MBTI 카테고리 결과 받아오기
+                        mbtiCategoryResult(res.data.type)
+                            .then((res3) => {
+                                const productPromises = res3.data.map(item =>
+                                    categoryGetProduct(item.category)
+                                );
+
+                                // 모든 categoryGetProduct 호출이 완료된 후 결과를 bookArray에 추가
+                                Promise.all(productPromises)
+                                    .then(results => {
+                                        // 결과들을 한 배열로 합치기
+                                        const allProducts = results.flatMap(res4 => res4.data);
+                                        setBookArray(allProducts);
+                                    })
+                                    .catch((err4) => {
+                                        console.error('Error fetching products:', err4);
+                                    });
+
+                            })
+                            .catch((err) => {
+                                console.error("Error fetching MBTI category result:", err);
+                            });
+
+                    })
+                    .catch((err) => {
+                        console.error("Error saving user MBTI:", err);
+                    });
+
             })
             .catch((err) => {
-
+                console.error("Error fetching MBTI data:", err);
             });
     };
+
 
     const cleanQuestionHeader = (question) => {
         const headerEndIndex = question.indexOf('1.') !== -1 ? question.indexOf('1.') : question.indexOf('2.');
@@ -155,11 +162,15 @@ const Mbti2 = () => {
 
     const reloadPage = async () => {
 
-        const data = await axios.post('http://34.121.58.202:8000/api/v1/user/questions/clear');
+        const data = await mbtiMethods3('http://localhost:8000/api/v1/user/questions/clear');
 
         nav('/mbtiStart');
         // window.location.reload();
     };
+
+    const productDetail = (productValue) => {
+        nav(`/detail?detail=${JSON.stringify(productValue)}`)
+    }
 
     return (
         <>
@@ -241,18 +252,26 @@ const Mbti2 = () => {
                         ))}
                     </div>
                     <div className="Compatibility" style={{ textAlign: 'center' }}>
-                        <p className="option_Compatibility" style={{ marginBottom: '10px', fontWeight: '700' }}>
-                            환상의 케미 <br />
-                            <img style={{ width: '50%' }} src={"https://spti.snackpot.kr/images/type/5_1.png"} alt="Best compatibility" /> <br />
-                            {mbtiType.bestCompatibility}
-                        </p>
-                        <p className="option_Compatibility" style={{ marginBottom: '10px', fontWeight: '700' }}>
-                            환장의 케미 <br />
-                            <img style={{ width: '50%' }} src={"https://spti.snackpot.kr/images/type/7_1.png"} alt="Worst compatibility" /> <br />
-                            {mbtiType.worstCompatibility}
-                        </p>
+                        <h2 style={{fontWeight: '600', marginBottom : '15px', fontSize: '18px'}}>{mbti}가 즐겨보는 책</h2>
+
+                        <div style={{display: 'flex', gap : '15px'}}>
+                            {bookArray.slice(0, 3).map((item, idx) => (
+                                <img onClick={() => {productDetail(item)}} style={{width : '110px', height: '140px', cursor : 'pointer'}} src={item.productImg} />
+                            ))}
+                        </div>
+
+                        {/*<p className="option_Compatibility" style={{ marginBottom: '10px', fontWeight: '700' }}>*/}
+                        {/*    환상의 케미 <br />*/}
+                        {/*    <img style={{ width: '50%' }} src={"https://spti.snackpot.kr/images/type/5_1.png"} alt="Best compatibility" /> <br />*/}
+                        {/*    {mbtiType.bestCompatibility}*/}
+                        {/*</p>*/}
+                        {/*<p className="option_Compatibility" style={{ marginBottom: '10px', fontWeight: '700' }}>*/}
+                        {/*    환장의 케미 <br />*/}
+                        {/*    <img style={{ width: '50%' }} src={"https://spti.snackpot.kr/images/type/7_1.png"} alt="Worst compatibility" /> <br />*/}
+                        {/*    {mbtiType.worstCompatibility}*/}
+                        {/*</p>*/}
                     </div>
-                    <button style={{ width: '100%', height: '50px' }} className='replay' onClick={reloadPage}>다시하기</button>
+                    <button style={{ width: '100%', height: '50px', cursor: 'pointer'}} className='replay' onClick={reloadPage}>다시하기</button>
                 </div>
             </div>
         </>

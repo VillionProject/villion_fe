@@ -67,6 +67,10 @@ const Home = () => {
         nav('/search')
     }
 
+    const linkMethods = () => {
+        nav('/myCart')
+    }
+
     return (
         <div>
             <Header>
@@ -84,18 +88,18 @@ const Home = () => {
                             {/*<div style={{width: '35px', height: '35px', borderRadius : '50%', background : 'black'}}></div>*/}
                             {/*<div style={{width: '35px', height: '35px', borderRadius : '50%', background : 'black'}}></div>*/}
                             {/*<div style={{width: '35px', height: '35px', borderRadius : '50%', background : 'black'}}></div>*/}
-                            <svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 25 24"
-                                 fill="none">
-                                <image href={Bell}/>
-                            </svg>
+                            {/*<svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg"*/}
+                            {/*     viewBox="0 0 25 24"*/}
+                            {/*     fill="none">*/}
+                            {/*    <image href={Bell}/>*/}
+                            {/*</svg>*/}
                             <img src={searchImg} onClick={searchMethdos} />
                             {/*<svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg"*/}
                             {/*     viewBox="0 0 25 24"*/}
                             {/*     fill="none">*/}
                             {/*    <image href={Heart}/>*/}
                             {/*</svg>*/}
-                            <svg className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg"
+                            <svg onClick={linkMethods} className={classes.svgRightContainer} xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 25 24"
                                  fill="none">
                                 <image href={Bag}/>
@@ -117,7 +121,7 @@ const Home = () => {
                     <div className={classes.bookListWarp}>
                         <div className={classes.bookListContainer}>
                             <div className={classes.bookTitleWrap}>
-                                <div>인계동에서 대여할 수 있는 책</div>
+                                <div>villion이 추천하는 책</div>
                                 <div>더보기</div>
                             </div>
                             <div className={classes.bookContainer}>

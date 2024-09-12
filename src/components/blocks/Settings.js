@@ -6,14 +6,21 @@ import chat from '../../asset/images/chat.png';
 import friend from '../../asset/images/friends.png';
 import setting from '../../asset/images/setting.png';
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {loginCheckAction} from "../../ducks/loginCheck";
+import ProfileChange from "./ProfileChange";
 
 const Settings = () => {
     const nav = useNavigate();
     const userInfo = useSelector(state => state.loginCheck.loginInfo);
+    const dispatch = useDispatch()
 
     const linkMethods = (keyword) => {
         nav(keyword)
+    }
+
+    const profileImgChange = () => {
+        nav('/profileChange')
     }
 
     return (
@@ -25,7 +32,7 @@ const Settings = () => {
                 <div className={classes.userBackImg}>
                     {/*<img src={profileImg} />*/}
                     <img src={userInfo.profileImage} />
-                    <img src={editImg} />
+                    <img onClick={profileImgChange} src={editImg} />
                 </div>
 
                 <div className={classes.contentsWrap}>
@@ -36,10 +43,10 @@ const Settings = () => {
 
                     <div className={classes.myInfo}>
                         <ul>
-                            <li onClick={() => {linkMethods("/libEdit")}}>도서관 정보</li>
+                            {/*<li onClick={() => {linkMethods("/libEdit")}}>도서관 정보</li>*/}
                             <li>💙 찜 도서관</li>
-                            <li>💛 찜 도서</li>
-                            <li>장바구니</li>
+                            <li onClick={() => {linkMethods("/myWished")}}>💛 찜 도서</li>
+                            <li onClick={() => {linkMethods("/myCart")}}>장바구니</li>
                         </ul>
                     </div>
 
@@ -59,18 +66,19 @@ const Settings = () => {
 
                     <div className={classes.menuArea}>
                         <ul>
-                            <li>도서관 운영 상황 <img src={arrow} /></li>
-                            <li>도서관 운영 상황 <img src={arrow} /></li>
-                            <li>Devices <img src={arrow} /></li>
-                            <li>Notifications <img src={arrow} /></li>
-                            <li>내정보 수정 <img src={arrow} /></li>
-                            <li>문의하기 <img src={arrow} /></li>
+                            {/*<li>도서관 운영 상황 <img src={arrow} /></li>*/}
+                            {/*<li>도서관 운영 상황 <img src={arrow} /></li>*/}
+                            {/*<li>Devices <img src={arrow} /></li>*/}
+                            {/*<li>Notifications <img src={arrow} /></li>*/}
+                            {/*<li>내정보 수정 <img src={arrow} /></li>*/}
+                            <li>연간 목표 독서량 <img src={arrow} /></li>
+                            <li>메뉴 추가 고민중 <img src={arrow} /></li>
                         </ul>
                     </div>
 
                     <div className={classes.subMenuArea}>
                         <div className={classes.subMenu}>
-                            <div className={classes.imgArea}>
+                            <div className={classes.imgArea} onClick={() => {linkMethods("/chatTest3")}}>
                                 <img src={chat} />
                             </div>
                             <p>Chats</p>
@@ -81,7 +89,7 @@ const Settings = () => {
                             </div>
                             <p>문의하기</p>
                         </div>
-                        <div className={classes.subMenu}>
+                        <div className={classes.subMenu} onClick={() => {linkMethods("/libEdit")}}>
                             <div className={classes.imgArea}>
                                 <img src={setting} />
                             </div>
@@ -89,7 +97,6 @@ const Settings = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     );

@@ -4,7 +4,15 @@ import Heart from "../../asset/images/Heart_Outlined.svg";
 import Bag from "../../asset/images/Shopping_Bag_Outlined.svg"
 import ChattingPng from "../../asset/images/chat.png";
 import trade from "../../asset/images/trade.png";
-import {getProductsByCategory, getProductsByUser} from "../../common/api/ApiGetService";
+import heartFill from "../../asset/images/heartfill.webp";
+
+
+import {
+    getMyWished,
+    getProductsByCategory,
+    getProductsByUser,
+    getProductsByUser2
+} from "../../common/api/ApiGetService";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -17,16 +25,27 @@ import '../../styles/blocks/swiper.css';
 import {FreeMode, Pagination} from "swiper/modules";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {addCart, wishedToggle} from "../../common/api/ApiPostService";
+import Loading from "./Loading";
+import PopupDom from "./PopupDom";
+import MsgPopup from "./MsgPopup";
+import ConfirmPopup from "./ConfirmPopup";
 const ProductDetail = () => {
     const [bookInfo, setBookInfo] = useState('');
     const [libUserInfo, setLibUserInfo] = useState([]);
     const [categoryBook, setCategoryBook] = useState([]);
     const nav = useNavigate();
     const userInfo = useSelector(state => state.loginCheck.loginInfo);
+    const [loading, setLoading] = useState(false);
+    const [isMsgPopupOpen, setIsMsgPopupOpen] = useState({ show: false, msg: '', gb: '' });
+    const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState({ show: false, msg: '' });
+    const navigate = useNavigate();
+    const [bookArray, setBookArray] = useState([]);
 
     useEffect(() => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
+
         const bookInfoData = JSON.parse(urlParams.get('detail'));
         setBookInfo(bookInfoData);
         console.log(bookInfoData)
@@ -35,6 +54,8 @@ const ProductDetail = () => {
             .then((res) => {
                 if (res.status === 200) {
                     setLibUserInfo(res.data)
+
+                    // getProductsByUser
                 }
             }).catch((err) => {
 
@@ -49,6 +70,30 @@ const ProductDetail = () => {
             }).catch((err) => {
 
         })
+
+        getMyWished(userInfo.userId)
+            .then((res) => {
+                const productsString = res.data[0].products; // "[4,3,2,1]" 문자열
+                const productsArray = JSON.parse(productsString); // 배열로 변환 [4, 3, 2, 1]
+
+                const resultArray = []; // 결과를 저장할 빈 배열
+
+                // 모든 비동기 작업이 끝난 후 상태 업데이트
+                Promise.all(productsArray.map((item) => {
+                    return getProductsByUser2(item)
+                        .then((res) => {
+                            resultArray.push(res.data); // 각 product의 데이터를 resultArray에 추가
+                        })
+                        .catch((err) => {
+                            console.error(`Error fetching product for item ${item}:`, err);
+                        });
+                })).then(() => {
+                    setBookArray(resultArray); // 모든 비동기 작업이 완료되면 bookArray 상태 업데이트
+                });
+            })
+            .catch((err) => {
+                console.error("Error fetching wished products:", err);
+            });
 
     }, []);
 
@@ -65,7 +110,7 @@ const ProductDetail = () => {
             case '대여' :
                 const rentalObj =  {
                     title : '대여하기',
-                    info : bookInfo,
+                    info : bookInfo
                 }
 
                 nav(`/rentalConfirm?data=${JSON.stringify(rentalObj)}`)
@@ -84,8 +129,73 @@ const ProductDetail = () => {
             break
         }
     }
+    const closeMsgPopup = () => {
+        setIsMsgPopupOpen({ show: false, msg: '', gb: '' });
+    }
+
+    const confirmHandler = () => {
+        alert("asdsad");
+    }
+
+    const closeConfirmPopup = () => {
+        setIsConfirmPopupOpen({ show: false, msg: '' });
+    }
+
+    const addCartMethod = () => {
+
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+            addCart(
+                userInfo.userId,
+                bookInfo.ownerUserId,
+                bookInfo.productId,
+                'test',
+                'test',
+                bookInfo.productStatus,
+                bookInfo.stockQuantity,
+                "2024-06-01",
+                bookInfo.rentalPrice,
+                bookInfo.rentable,
+                bookInfo.purchasable,
+                bookInfo.rentalMethod
+            ).then((res) => {
+                if (res.status == 200) {
+                    setIsMsgPopupOpen({show: true, msg: '카트에 추가 되었습니다.', gb : 'success'});
+                }
+            }).catch((err) => {
+                setIsMsgPopupOpen({ show: true, msg: "카트에 추가중 오류가 발생했습니다.", gb: 'error' });
+            })
+        }, 1000)
+
+
+    }
+
+    const heartToggleMethods = (productId) => {
+        setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+
+            wishedToggle(userInfo.userId, '기본폴더', productId)
+                .then((res) => {
+
+                    if(res.status == 200) {
+                        // setIsMsgPopupOpen({show: true, msg: '찜 목록이 업데이트 되었습니다.', gb : 'success'});
+                        window.location.reload();
+                    }
+
+                }).catch((err) => {
+
+            })
+        }, 1000)
+
+
+    }
 
     return (
+        <>
         <div className={classes.wrapArea}>
 
             <div className={classes.paddingArea}>
@@ -105,10 +215,18 @@ const ProductDetail = () => {
                         <div className={classes.priceLeftArea}>
                             <span>{bookInfo.productStatus === 'EXCELLENT' ? '최상' : '중상'}</span><span>|</span><span>{bookInfo.rentalPrice}원</span>
                         </div>
-                        <div className={classes.priceRightArea}>
-                            <img src={Heart} />
-                            <img src={Bag} />
-                        </div>
+                        {bookInfo.ownerUserId != userInfo.userId &&
+                            <div className={classes.priceRightArea}>
+                                {bookArray.some(book => book.productId === bookInfo.productId) ? (
+                                    <img onClick={() => heartToggleMethods(bookInfo.productId)} style={{width: '24px', height : '24px'}} src={heartFill} />
+
+                                ) : (
+                                    <img onClick={() => heartToggleMethods(bookInfo.productId)} src={Heart} />
+                                )}
+                                <img onClick={addCartMethod} src={Bag} />
+                            </div>
+                        }
+
                     </div>
                     <div className={classes.priceBottomArea}>
                         <p>같은 책 모두 보기 (3)</p>
@@ -117,10 +235,6 @@ const ProductDetail = () => {
 
             </div>
 
-
-            {/*<div className={classes.reviewArea}>*/}
-            {/*    <h2>리뷰</h2>*/}
-            {/*</div>*/}
 
             <div className={classes.tradeArea}>
                 <h2>이 책이 있는 직거래 도서관</h2>
@@ -173,42 +287,11 @@ const ProductDetail = () => {
                 </div>
             </div>
 
-            {/*<div className={classes.sameCategoryArea}>*/}
-            {/*    <h2>이 시리즈의 다른 책</h2>*/}
-
-            {/*    <div className={classes.imgWrap}>*/}
-            {/*        <div className={classes.imgWra2}>*/}
-
-            {/*        </div>*/}
-            {/*        <div className={classes.imgWra2}>*/}
-
-            {/*        </div>*/}
-            {/*        <div className={classes.imgWra2}>*/}
-
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
-            {/*<div className={classes.sameCategoryArea}>*/}
-            {/*    <h2>이 책과 함께 주문된 도서</h2>*/}
-
-            {/*    <div className={classes.imgWrap}>*/}
-            {/*        <div className={classes.imgWra2}>*/}
-
-            {/*        </div>*/}
-            {/*        <div className={classes.imgWra2}>*/}
-
-            {/*        </div>*/}
-            {/*        <div className={classes.imgWra2}>*/}
-
-            {/*        </div>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
 
             {bookInfo.ownerUserId != userInfo.userId &&
                 <div className={classes.btnArea}>
-                    <div onClick={() => {rentalMethods('대여')}}><p>바로 대여</p></div>
-                    <div onClick={() => {rentalMethods('구매')}}><p>바로 구매</p></div>
+                    {bookInfo.rentable && <div onClick={() => {rentalMethods('대여')}}><p>바로 대여</p></div>}
+                    {bookInfo.purchasable && <div onClick={() => {rentalMethods('구매')}}><p>바로 구매</p></div>}
                 </div>}
 
             {bookInfo.ownerUserId == userInfo.userId &&
@@ -219,6 +302,17 @@ const ProductDetail = () => {
             }
 
         </div>
+
+            {loading && <Loading />}
+            <div id='popupDom'>
+                {isMsgPopupOpen.show && <PopupDom>
+                    <MsgPopup onClick={closeMsgPopup} msg={isMsgPopupOpen.msg} />
+                </PopupDom>}
+                {isConfirmPopupOpen.show && <PopupDom>
+                    <ConfirmPopup onConfirm={confirmHandler} onClick={closeConfirmPopup} msg={isConfirmPopupOpen.msg} />
+                </PopupDom>}
+            </div>
+        </>
     );
 };
 

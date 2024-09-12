@@ -14,6 +14,9 @@ import Recommended from "./components/blocks/Recommended";
 import Mbti2 from "./components/blocks/Mbti2";
 import MbtiStart from "./components/blocks/MbtiStart";
 import Search from "./components/blocks/Search";
+import ProfileChange from "./components/blocks/ProfileChange";
+import Mybooks from "./components/blocks/Mybooks";
+import MyCart from "./components/blocks/MyCart";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +78,18 @@ const router = createBrowserRouter([
   {
     path : '/search',
     element : <Search />,
+  },
+  {
+    path : '/profileChange',
+    element : <ProfileChange />,
+  },
+  {
+    path : '/myWished',
+    element : <Mybooks />,
+  },
+  {
+    path : '/myCart',
+    element : <MyCart />,
   }
 
 

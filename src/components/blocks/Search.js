@@ -55,6 +55,10 @@ const Search = () => {
         setSearchText(e.target.value)
     }
 
+    const productDetail = (productValue) => {
+        nav(`/detail?detail=${JSON.stringify(productValue)}`)
+    }
+
     return (
         <>
             <div className={classes.searchWrap}>
@@ -84,7 +88,7 @@ const Search = () => {
                                 >
                                     {categoryBook.map((item, idx) => (
                                         <SwiperSlide>
-                                            <div key={idx} className={classes.imgWra2}>
+                                            <div key={idx} onClick={() => {productDetail(item)}}  className={classes.imgWra2}>
                                                 <img src={item.productImg} />
                                             </div>
                                         </SwiperSlide>
