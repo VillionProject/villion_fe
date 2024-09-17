@@ -45,7 +45,7 @@ const Settings = () => {
                         <ul>
                             {/*<li onClick={() => {linkMethods("/libEdit")}}>도서관 정보</li>*/}
                             <li>💙 찜 도서관</li>
-                            <li onClick={() => {linkMethods("/myWished")}}>💛 찜 도서</li>
+                            <li onClick={() => {linkMethods("/myFolder")}}>💛 찜 도서</li>
                             <li onClick={() => {linkMethods("/myCart")}}>장바구니</li>
                         </ul>
                     </div>

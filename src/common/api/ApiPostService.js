@@ -106,3 +106,9 @@ export const userMbtiSave = (userId, mbti) => {
 export const userProfileImageChange = (userId, profileLink) => {
     return apiClient.patch(`/api/v1/user/updateProfileImage/${userId}/${profileLink} `);
 };
+
+export const userFolderCreate = (userId, folderName) => {
+    return apiClient.post(`/api/v1/user/${userId}/wishProduct/folder`, {
+        folderName
+    });
+};

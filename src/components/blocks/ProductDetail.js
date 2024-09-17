@@ -73,13 +73,20 @@ const ProductDetail = () => {
 
         getMyWished(userInfo.userId)
             .then((res) => {
-                const productsString = res.data[0].products; // "[4,3,2,1]" 문자열
-                const productsArray = JSON.parse(productsString); // 배열로 변환 [4, 3, 2, 1]
+                // res.data의 모든 요소에 대해 순회하면서 products를 하나의 배열로 병합
+                const allProductsArray = res.data.reduce((acc, current) => {
+                    const productsString = current.products; // 각 요소의 products 값 (문자열)
+                    if (productsString) { // null 또는 undefined 확인
+                        const productsArray = JSON.parse(productsString); // 배열로 변환
+                        return acc.concat(productsArray); // 누적 배열에 병합
+                    }
+                    return acc; // null이면 기존 배열(acc) 반환
+                }, []); // 빈 배열에서 시작
 
                 const resultArray = []; // 결과를 저장할 빈 배열
 
                 // 모든 비동기 작업이 끝난 후 상태 업데이트
-                Promise.all(productsArray.map((item) => {
+                Promise.all(allProductsArray.map((item) => {
                     return getProductsByUser2(item)
                         .then((res) => {
                             resultArray.push(res.data); // 각 product의 데이터를 resultArray에 추가
@@ -94,6 +101,8 @@ const ProductDetail = () => {
             .catch((err) => {
                 console.error("Error fetching wished products:", err);
             });
+
+
 
     }, []);
 
@@ -175,21 +184,25 @@ const ProductDetail = () => {
     const heartToggleMethods = (productId) => {
         setLoading(true);
 
-        setTimeout(() => {
-            setLoading(false);
+        nav(`/myFolderList?productId=${productId}`)
 
-            wishedToggle(userInfo.userId, '기본폴더', productId)
-                .then((res) => {
+        return ;
 
-                    if(res.status == 200) {
-                        // setIsMsgPopupOpen({show: true, msg: '찜 목록이 업데이트 되었습니다.', gb : 'success'});
-                        window.location.reload();
-                    }
-
-                }).catch((err) => {
-
-            })
-        }, 1000)
+        // setTimeout(() => {
+        //     setLoading(false);
+        //
+        //     wishedToggle(userInfo.userId, '기본폴더', productId)
+        //         .then((res) => {
+        //
+        //             if(res.status == 200) {
+        //                 // setIsMsgPopupOpen({show: true, msg: '찜 목록이 업데이트 되었습니다.', gb : 'success'});
+        //                 window.location.reload();
+        //             }
+        //
+        //         }).catch((err) => {
+        //
+        //     })
+        // }, 1000)
 
 
     }

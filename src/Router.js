@@ -17,6 +17,9 @@ import Search from "./components/blocks/Search";
 import ProfileChange from "./components/blocks/ProfileChange";
 import Mybooks from "./components/blocks/Mybooks";
 import MyCart from "./components/blocks/MyCart";
+import MyFolder from "./components/blocks/MyFolder";
+import NewFolder from "./components/blocks/NewFolder";
+import MyFolderList from "./components/blocks/MyFolderList";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +93,18 @@ const router = createBrowserRouter([
   {
     path : '/myCart',
     element : <MyCart />,
+  },
+  {
+    path : '/myFolder',
+    element : <MyFolder />,
+  },
+  {
+    path : '/newFolder',
+    element : <NewFolder />,
+  },
+  {
+    path : '/myFolderList',
+    element : <MyFolderList />,
   }
 
 
