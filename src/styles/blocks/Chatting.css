@@ -1,212 +1,137 @@
-/*body {*/
-/*    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    background-color: #f0f0f0;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    height: 100vh;*/
-/*    flex-direction: column;*/
-/*}*/
-
-.chat-container {
-    display: flex;
-    max-width: 800px;
-    min-width: 800px;
-    min-height: 600px;
-    max-height: 600px;
-    margin: 20px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-.users-list {
+/* 사용자 목록 섹션 */
+.usersList {
     flex: 1;
-    border-right: 1px solid #ccc;
     padding: 20px;
-    box-sizing: border-box;
-    background-color: #3498db;
-    color: #fff;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    background-color: #34495e;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    color: white;
 }
 
-.users-list-container {
-    height: 100%;
-    overflow-y: scroll;
-}
-
-.users-list h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+.usersListContainer {
+    overflow-y: auto;
 }
 
 .users-list ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    overflow-y: auto;
 }
 
 .user-item {
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #34495e;
+    border-radius: 12px;
+    transition: background-color 0.3s;
     cursor: pointer;
+    flex-direction: column;
+}
+
+.user-item:hover {
+    background-color: #3d566e;
 }
 
 .user-item.active {
-    background-color: #cdebff;
-    color: #4f4f4f;
-    padding: 10px;
-    border-radius: 5px;
+    background-color: #16a085;
 }
 
 .user-item img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 12px;
+    display: none;
 }
 
 .user-item span {
+    color: white;
+    font-size: 14px;
     font-weight: bold;
 }
 
 .separator {
     height: 1px;
-    background-color: #ccc;
+    background-color: #7f8c8d;
     margin: 10px 0;
 }
 
+/* 메시지 영역 */
 .chat-area {
     flex: 3;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    box-sizing: border-box;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    background-color: #ecf0f1;
+    overflow-y: auto;
 }
 
 .message {
-    margin-bottom: 5px;
-    border-radius: 5px;
-}
-
-#chat-messages {
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
-}
-
-.message p {
-    padding: 0 12px;
-    border-radius: 15px;
+    max-width: 70%;
     word-wrap: break-word;
 }
 
-.user-item span.nbr-msg {
-    margin-left: 10px;
-    background-color: #f8fa6f;
-    color: white;
-    padding: 5px;
-    width: 10px;
-    border-radius: 50%;
-    height: 10px;
-}
-
 .sender {
-    background-color: #3498db;
-    color: #fff;
     align-self: flex-end;
-}
-
-.sender p {
-    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 12px 12px 0 12px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .receiver {
-    background-color: #ecf0f1;
-    color: #333;
     align-self: flex-start;
-}
-
-.receiver p {
-    padding: 10px;
+    background-color: #bdc3c7;
+    color: #2c3e50;
+    border-radius: 12px 12px 12px 0;
+    padding: 10px 15px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .message-input {
-    margin-top: auto;
     display: flex;
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #dcdde1;
 }
 
 .message-input input {
     flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: 1px solid #bdc3c7;
+    font-size: 1rem;
+    outline: none;
     margin-right: 10px;
+    transition: border-color 0.3s;
+}
+
+.message-input input:focus {
+    border-color: #3498db;
 }
 
 .message-input button {
-    padding: 10px;
-    border: none;
     background-color: #3498db;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.user-form {
-    max-width: 400px;
-    padding: 40px;
-    box-sizing: border-box;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-}
-
-.user-form h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.user-form label {
-    display: block;
-    margin-bottom: 8px;
-}
-
-.user-form input {
-    width: 100%;
-    padding: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.user-form button {
-    padding: 12px;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
     border: none;
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 5px;
     cursor: pointer;
-    width: 100%;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
-.hidden {
-    display: none;
-}
-
-a.logout {
-    color: #fff;
-    text-decoration: none;
+.message-input button:hover {
+    background-color: #2980b9;
 }

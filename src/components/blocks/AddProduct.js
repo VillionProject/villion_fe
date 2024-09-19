@@ -131,7 +131,7 @@ const AddProduct = () => {
                         <CategorySelect setCategory={setRentalMethod} menuList={rentalMenu} />
                     </div>
                     {/*<Input value="대여 방법" placeholder="만나서 할래요" type="text" onChange={rentalMethodChangeMethod} />*/}
-                    <Input value="거래 지역" placeholder="인계동" type="text" onChange={rentalLocationChangeMethod} />
+                    <Input value="거래 지역" placeholder="수원시 인계동" type="text" onChange={rentalLocationChangeMethod} />
                     <Input value="설명" placeholder="설명을 입력하세요" type="text" onChange={descriptionChangeMethod} />
                     <Input value="이미지 주소" placeholder="이미지주소를 입력하세요" type="text" onChange={imgChangeMethod} />
 

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import classes from '../../styles/blocks/RentalConfirm.module.css';
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
-import {getProductsByCategory, getProductsByUser} from "../../common/api/ApiGetService";
+import {getProductsByCategory, getProductsByUser, getUser} from "../../common/api/ApiGetService";
 import {addDeliveryOrder} from "../../common/api/ApiPostService";
 import {useSelector} from "react-redux";
 import PopupDom from "./PopupDom";
@@ -26,6 +26,7 @@ const RentalConfirm = () => {
     const [isMsgPopupOpen, setIsMsgPopupOpen] = useState({show : false, msg: ''});
     const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState({show : false, msg: ''});
     const navigate = useNavigate();
+    const [bookOnwer, setBookOnwer] = useState('');
 
 
     useEffect(() => {
@@ -35,6 +36,16 @@ const RentalConfirm = () => {
         setCurrData(currData.info)
         setTitle(currData.title)
         console.log(currData.info)
+
+        getUser(currData.info.ownerUserId)
+            .then((res) => {
+                if(res.status == 200) {
+                    setBookOnwer(res.data)
+                }
+            })
+            .catch((err) => {
+
+            })
 
     }, []);
 
@@ -175,7 +186,7 @@ const RentalConfirm = () => {
 
         if (isMsgPopupOpen.gb === 'successRental') {
             // navigate('/home');
-            navigate(`/chatTest3?test=${userInfo.libraryName}&productId=${currData.productId}&gb=${true}`)
+            navigate(`/chatTest3?test=${bookOnwer.libraryName}&productId=${currData.productId}&gb=${true}`)
         }
 
         setIsMsgPopupOpen({show: false, msg: ''});

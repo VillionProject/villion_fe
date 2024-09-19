@@ -162,7 +162,7 @@ const Mbti2 = () => {
 
     const reloadPage = async () => {
 
-        const data = await mbtiMethods3('http://localhost:8000/api/v1/user/questions/clear');
+        const data = await mbtiMethods3();
 
         nav('/mbtiStart');
         // window.location.reload();

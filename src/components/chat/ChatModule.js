@@ -376,17 +376,18 @@ const ChatModule = () => {
         setIsConfirmPopupOpen({show: false, msg: ''});
     }
 
+
     return (
         <div className={classes.test}>
                 <div className={classes.chatContainer} ref={chatPagePageRef}>
                     <div className={classes.usersList}>
                         <div className={classes.usersListContainer}>
-                            <h2>채팅방 리스트</h2>
+                            <h2>채팅방 목록</h2>
                             <ul id="connectedUsers">
                             </ul>
                         </div>
                         <div>
-                            <p ref={connectedUserFullnameRef}>{userInfo.libraryName} 님의 채팅 목록 입니다.</p>
+                            <p className={classes.posi} ref={connectedUserFullnameRef}>{userInfo.libraryName} 님의 채팅 목록 입니다.</p>
                             {/*<a onClick={onLogout} className={classes.logout} id="logout">Logout</a>*/}
                         </div>
                     </div>
@@ -398,7 +399,9 @@ const ChatModule = () => {
                         <form onSubmit={sendMessage} ref={messageFormRef} name="messageForm">
                             <div className={classes.messageInput}>
                                 <input onChange={textMethods} autoComplete="off" type="text" className={classes.chatMessage} ref={messageInputRef} placeholder="Type your message..." />
-                                <button>Send</button>
+                                <button style={{
+                                    display :'none'
+                                }}>Send</button>
                             </div>
                         </form>
                     </div>
