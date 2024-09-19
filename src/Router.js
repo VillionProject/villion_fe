@@ -14,6 +14,7 @@ import Recommended from "./components/blocks/Recommended";
 import Mbti2 from "./components/blocks/Mbti2";
 import MbtiStart from "./components/blocks/MbtiStart";
 import Search from "./components/blocks/Search";
+import Location from "./components/blocks/Location";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
   {
     path : '/search',
     element : <Search />,
+  },
+  {
+    path : '/location',
+    element : <Location />,
   }
 
 

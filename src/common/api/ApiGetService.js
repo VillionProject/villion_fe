@@ -16,8 +16,3 @@ export const getProductsByCategory = (productId) => apiClient.get(`/api/v1/produ
 
 
 
-
-
-
-
-
