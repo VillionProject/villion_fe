@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialIsLoginState = {
   loginInfo : {
       login : false,
-      base_location_id: "",
+      baseLocationId: "",
       createdAt: "",
       email: "",
       familyAccount: "",
@@ -49,7 +49,7 @@ const loginCheckSlise = createSlice({
       },
 
       locateSet(state, action) {
-          state.loginInfo.base_location_id = action.payload
+          state.loginInfo.baseLocationId = action.payload
       },
 
 

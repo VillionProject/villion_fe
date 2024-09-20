@@ -71,6 +71,46 @@ const Home = () => {
         nav('/myCart')
     }
 
+    const sendLocation = () => {
+        console.log(userInfo.base_location_id)
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                // 위치 정보를 콘솔에 출력
+                console.log("Latitude:", lat);
+                console.log("Longitude:", lon);
+
+                // 위치 정보를 서버에 전송
+                fetch(`http://localhost:8000/api/v1/user/${userInfo.userId}/location`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        latitude: lat,
+                        longitude: lon,
+                    }),
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log("Location sent to server:", data);
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    });
+            });
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+
+
+
+    };
+
+
     return (
         <div>
             <Header>
@@ -78,10 +118,10 @@ const Home = () => {
                     <SmallLogo></SmallLogo>
                     <div className={classes.mainIconWrap}>
                         <div className={classes.addressWrap}>
-                            <h1 className={classes.address}>인계동</h1>
+                            <h1 className={classes.address}>{userInfo.baseLocationId} </h1>
                             <svg className={classes.svgContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
                                  fill="none">
-                                <image href={ArrowDown}/>
+                                <image href={ArrowDown} onClick={sendLocation}/>
                             </svg>
                         </div>
                         <div className={classes.topSvgWrap}>
