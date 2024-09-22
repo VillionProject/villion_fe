@@ -179,11 +179,11 @@ const Mbti2 = () => {
                 <SmallLogo></SmallLogo>
                 <div className={classes.mainIconWrap}>
                     <div className={classes.addressWrap}>
-                        <h1 className={classes.address}>인계동</h1>
-                        <svg className={classes.svgContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
-                             fill="none">
-                            <image href={ArrowDown}/>
-                        </svg>
+                        <h1 className={classes.address}>{userInfo.baseLocationId}</h1>
+                        {/*<svg className={classes.svgContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"*/}
+                        {/*     fill="none">*/}
+                        {/*    <image href={ArrowDown}/>*/}
+                        {/*</svg>*/}
                     </div>
                     <div className={classes.topSvgWrap}>
                         {/*<div style={{width: '35px', height: '35px', borderRadius : '50%', background : 'black'}}></div>*/}

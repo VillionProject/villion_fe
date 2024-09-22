@@ -3,19 +3,18 @@ import Center from "./Center";
 import classes from "../../styles/blocks/Home.module.css"
 import SmallLogo from "../atoms/SmallLogo";
 import ArrowDown from "../../../src/asset/images/Arrow_Down.svg"
-import Bell from "../../../src/asset/images/Bell.svg"
-import Heart from "../../../src/asset/images/Heart_Outlined.svg"
 import Bag from "../../../src/asset/images/Shopping_Bag_Outlined.svg"
 import bookImg10 from "../../../src/asset/books/image 10.png"
 import HomeBar from "../atoms/HomeBar";
 import Header from "./Header";
 import Footer from "./Footer";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {getProducts} from "../../common/api/ApiGetService";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import {getProducts, getUser} from "../../common/api/ApiGetService";
+import {Swiper, SwiperSlide} from 'swiper/react';
 import recomenImg from '../../asset/images/recomen.png';
 import searchImg from '../../asset/images/search.webp';
+import refresh from '../../asset/images/Refresh.png';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -24,6 +23,12 @@ import 'swiper/css/pagination';
 
 import '../../styles/blocks/swiper.css';
 import {FreeMode, Pagination} from "swiper/modules";
+import {locationFunc} from "../../common/api/ApiPostService";
+import {loginCheckAction} from "../../ducks/loginCheck";
+import Loading from "./Loading";
+import PopupDom from "./PopupDom";
+import MsgPopup from "./MsgPopup";
+import ConfirmPopup from "./ConfirmPopup";
 
 
 const Home = () => {
@@ -32,6 +37,11 @@ const Home = () => {
     const nav = useNavigate();
     const [bookArray, setBookArray] = useState([]);
     const [currPage, setCurrPage] = useState('Home');
+    const [location, setLocation] = useState(userInfo.baseLocationId);
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+    const [isMsgPopupOpen, setIsMsgPopupOpen] = useState({show : false, msg: ''});
+    const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState({show : false, msg: ''});
 
 
     useEffect(() => {
@@ -71,6 +81,53 @@ const Home = () => {
         nav('/myCart')
     }
 
+    const closeMsgPopup = () => {
+        setIsMsgPopupOpen({show: false, msg: ''});
+    }
+    const confirmHandler = () => {
+        alert("asdsad")
+    }
+
+    const closeConfirmPopup = () => {
+        setIsConfirmPopupOpen({show: false, msg: ''});
+    }
+
+    const sendLocation = () => {
+        // console.log(userInfo.base_location_id)
+
+        setLoading(true);
+
+        setTimeout(() => {
+
+            setLoading(false);
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    locationFunc(userInfo.userId, lat, lon)
+                        .then((res) => {
+                            getUser(userInfo.userId)
+                                .then((res) => {
+
+                                    if(res.status == 200) {
+                                        setLocation(res.data.baseLocationId);
+                                        dispatch(loginCheckAction.locateSet(res.data.baseLocationId));
+                                    }
+
+                                })
+                        }).catch((err) => {
+
+                    })
+                });
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }, 1000)
+
+    };
+
     return (
         <div>
             <Header>
@@ -78,10 +135,10 @@ const Home = () => {
                     <SmallLogo></SmallLogo>
                     <div className={classes.mainIconWrap}>
                         <div className={classes.addressWrap}>
-                            <h1 className={classes.address}>인계동</h1>
+                            <h1 className={classes.address}>{location}</h1>
                             <svg className={classes.svgContainer} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24"
                                  fill="none">
-                                <image href={ArrowDown}/>
+                                <image style={{cursor : 'pointer', height: '100%'}} href={refresh} onClick={sendLocation}/>
                             </svg>
                         </div>
                         <div className={classes.topSvgWrap}>
@@ -223,6 +280,15 @@ const Home = () => {
                 <HomeBar setCurrPageSetting={setCurrPageSetting}></HomeBar>
             </Footer>
 
+            {loading && <Loading />}
+            <div id='popupDom'>
+                {isMsgPopupOpen.show && <PopupDom>
+                    <MsgPopup onClick={closeMsgPopup} msg={isMsgPopupOpen.msg} />
+                </PopupDom>}
+                {isConfirmPopupOpen.show && <PopupDom>
+                    <ConfirmPopup onConfirm={confirmHandler} onClick={closeConfirmPopup} msg={isConfirmPopupOpen.msg} />
+                </PopupDom>}
+            </div>
         </div>
     );
 };

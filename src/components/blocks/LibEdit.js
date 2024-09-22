@@ -164,7 +164,7 @@ const LibEdit = () => {
                 </div>
 
                 <div className={classes.myLibLocation}>
-                    <Input onChange={locateHandler} placeholder={userInfo.base_location_id} value="내 도서관 위치" type="text" />
+                    <Input onChange={locateHandler} placeholder={userInfo.baseLocationId} value="내 도서관 위치" type="text" />
                 </div>
 
                 <div className={classes.myLibGoal}>

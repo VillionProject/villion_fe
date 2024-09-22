@@ -112,3 +112,11 @@ export const userFolderCreate = (userId, folderName) => {
         folderName
     });
 };
+
+export const locationFunc = (userId, latitude, longitude) => {
+    return apiClient.post(`/api/v1/user/${userId}/location`, {
+        latitude,
+        longitude
+    });
+};
+
