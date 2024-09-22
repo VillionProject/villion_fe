@@ -24,5 +24,4 @@ export const mbtiCategoryResult = (mbti) => apiClient.get(`/api/v1/user/getMbtiC
 export const categoryGetProduct = (category) => apiClient.get(`/api/v1/product/getCategory/${category}`)
 
 export const getMyFolder = (userId) => apiClient.get(`/api/v1/user/${userId}/wishProductFolder`)
-
-
+export const getMyRental = (userId) => apiClient.get(`/api/v1/rental/getAllRentalsByUserID/${userId}`)

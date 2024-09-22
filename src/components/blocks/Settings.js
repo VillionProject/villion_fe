@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import classes from '../../styles/blocks/Settings.module.css'
 import editImg from '../../asset/images/Edit.png';
 import arrow from '../../asset/images/ArrowRight.png';
@@ -9,11 +9,23 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {loginCheckAction} from "../../ducks/loginCheck";
 import ProfileChange from "./ProfileChange";
+import {getMyRental} from "../../common/api/ApiGetService";
 
 const Settings = () => {
     const nav = useNavigate();
     const userInfo = useSelector(state => state.loginCheck.loginInfo);
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        getMyRental(userInfo.userId)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((err) => {
+
+            })
+
+    }, []);
 
     const linkMethods = (keyword) => {
         nav(keyword)
@@ -22,6 +34,7 @@ const Settings = () => {
     const profileImgChange = () => {
         nav('/profileChange')
     }
+
 
     return (
         <div>

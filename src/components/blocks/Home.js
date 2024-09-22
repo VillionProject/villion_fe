@@ -108,17 +108,20 @@ const Home = () => {
 
                     locationFunc(userInfo.userId, lat, lon)
                         .then((res) => {
+
+                            console.log(res.data)
                             getUser(userInfo.userId)
                                 .then((res) => {
 
                                     if(res.status == 200) {
+                                        console.log(res.data.baseLocationId)
                                         setLocation(res.data.baseLocationId);
                                         dispatch(loginCheckAction.locateSet(res.data.baseLocationId));
                                     }
 
                                 })
                         }).catch((err) => {
-
+                        console.log(err)
                     })
                 });
             } else {
