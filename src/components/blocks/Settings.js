@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import classes from '../../styles/blocks/Settings.module.css'
 import editImg from '../../asset/images/Edit.png';
 import arrow from '../../asset/images/ArrowRight.png';
@@ -15,16 +15,23 @@ const Settings = () => {
     const nav = useNavigate();
     const userInfo = useSelector(state => state.loginCheck.loginInfo);
     const dispatch = useDispatch();
+    const [rentalWithDate, setRentalWithDate] = useState([]);
+    const [rentalWithoutDate, setRentalWithoutDate] = useState([]);
 
     useEffect(() => {
         getMyRental(userInfo.userId)
             .then((res) => {
-                console.log(res)
+                const rentals = res.data;
+                console.log(rentals)
+                const rentalsWithDate = rentals.filter(item => item.rentalStartDate !== null);
+                const rentalsWithoutDate = rentals.filter(item => item.rentalStartDate === null);
+
+                setRentalWithDate(rentalsWithDate);
+                setRentalWithoutDate(rentalsWithoutDate);
             })
             .catch((err) => {
-
-            })
-
+                console.error(err); // 에러 처리
+            });
     }, []);
 
     const linkMethods = (keyword) => {
@@ -63,17 +70,17 @@ const Settings = () => {
                         </ul>
                     </div>
 
-                    <div className={classes.myLibInfo}>
-                        <p>직거래 대여</p>
-                        <div className={classes.line}></div>
-                        <p className={classes.param}>대여중 - 권 / 완료 - 권</p>
-                        <img src={arrow} />
-                    </div>
+                    {/*<div className={classes.myLibInfo}>*/}
+                    {/*    <p>직거래 대여</p>*/}
+                    {/*    <div className={classes.line}></div>*/}
+                    {/*    <p className={classes.param}>대여중 {rentalWithDate.length} 권 / 완료 - 권</p>*/}
+                    {/*    <img src={arrow} />*/}
+                    {/*</div>*/}
 
                     <div className={classes.myLibInfo}>
-                        <p>빌런의 대여</p>
-                        <div className={classes.line}></div>
-                        <p className={classes.param}>대여중 - 권 / 완료 - 권</p>
+                        <p>대여</p>
+                        {/*<div className={classes.line}></div>*/}
+                        <p className={classes.param}>대여중 {rentalWithDate.length} 권 / 완료 - 권</p>
                         <img src={arrow} />
                     </div>
 

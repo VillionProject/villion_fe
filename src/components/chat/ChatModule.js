@@ -28,6 +28,8 @@ const ChatModule = () => {
     const [text, setText] = useState('');
     const [productId, setProductId] = useState('');
     const nav = useNavigate();
+    const devChatApi = '192.168.0.108';
+    const prodChatApi = '34.121.58.202';
 
     const [isMsgPopupOpen, setIsMsgPopupOpen] = useState({show : false, msg: '', gb : ''});
     const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState({show : false, msg: ''});
@@ -56,7 +58,8 @@ const ChatModule = () => {
         const fullnameValue = fullName.trim();
 
         if (nicknameValue && fullnameValue) {
-            const stompClient = Stomp.over(new SockJS('http://34.121.58.202:8088/stomp-endpoint'));
+            // const stompClient = Stomp.over(new SockJS(`http://${devChatApi}:8088/stomp-endpoint`));
+            const stompClient = Stomp.over(new SockJS(`http://${prodChatApi}:8088/stomp-endpoint`));
             stompClient.connect({}, () => onConnected(stompClient, nicknameValue, fullnameValue), onError);
         }
     }
@@ -106,7 +109,8 @@ const ChatModule = () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
 
-        const myRoom = await fetch(`http://34.121.58.202:8088/room/${userInfo.libraryName}`);
+        // const myRoom = await fetch(`http://${devChatApi}:8088/room/${userInfo.libraryName}`);
+        const myRoom = await fetch(`http://${prodChatApi}:8088/room/${userInfo.libraryName}`);
         const myRoomDisplay = await myRoom.json();
         // let flag = true;
 
@@ -146,7 +150,8 @@ const ChatModule = () => {
     const findAndDisplayConnectedUsers = async () => {
 
         // 온라인인 유저 조회
-        const connectedUsersResponse = await fetch('http://34.121.58.202:8088/users');
+        // const connectedUsersResponse = await fetch(`http://${devChatApi}:8088/users`);
+        const connectedUsersResponse = await fetch(`http://${prodChatApi}:8088/users`);
         let connectedUsers = await connectedUsersResponse.json();
 
         // 내가 아닌 유저만
@@ -251,7 +256,8 @@ const ChatModule = () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
 
-        const userChatResponse = await fetch(`http://34.121.58.202:8088/messages/${userInfo.libraryName}/${urlParams.get('test')}`);
+        // const userChatResponse = await fetch(`http://${devChatApi}:8088/messages/${userInfo.libraryName}/${urlParams.get('test')}`);
+        const userChatResponse = await fetch(`http://${prodChatApi}:8088/messages/${userInfo.libraryName}/${urlParams.get('test')}`);
 
         const userChat = await userChatResponse.json();
 

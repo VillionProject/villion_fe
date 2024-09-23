@@ -36,7 +36,15 @@
 }
 
 .user-item.active {
-    background-color: #16a085;
+    background-color: #3498db;
+}
+
+.user-item.active span:last-child {
+    display: none;
+}
+
+.user-item span:last-child {
+    display: none;
 }
 
 .user-item img {

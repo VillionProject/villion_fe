@@ -135,10 +135,10 @@ const RentalConfirm = () => {
             setIsMsgPopupOpen({show: true, msg: '대여종료날짜 입력해 주세요.', gb : ''});
             return ;
         }
-
+        console.log(userInfo.userId)
         addDeliveryOrder(
-            currData.ownerUserId,
             userInfo.userId,
+            currData.ownerUserId,
             userName,
             userPhone,
             "인계동",
@@ -158,11 +158,12 @@ const RentalConfirm = () => {
             if(res.status == 200) {
 
                 setIsMsgPopupOpen({show: true, msg: '대여신청이 완료되었습니다.', gb : 'success'});
+
                 // setIsMsgPopupOpen({show: true, msg: '대여신청이 완료되었습니다.', gb : 'successRental'});
 
             }
         }).catch((err) => {
-            setIsMsgPopupOpen({ show: true, msg: "책 구매 중 오류가 발생했습니다.", gb: 'error' });
+            setIsMsgPopupOpen({ show: true, msg: "책 대여 중 오류가 발생했습니다.", gb: 'error' });
         })
     }
     const nameMethods = (e) => {
