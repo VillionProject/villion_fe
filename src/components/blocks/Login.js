@@ -13,7 +13,7 @@ import Loading from "./Loading";
 import signUp from "./SignUp";
 import {userLogin, userSignUp} from "../../common/api/ApiPostService";
 import axios from "axios";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loginCheckAction} from "../../ducks/loginCheck";
 import {getProductsBySearch} from "../../common/api/ApiGetService";
 
@@ -25,6 +25,14 @@ const Login = () => {
     const [isMsgPopupOpen, setIsMsgPopupOpen] = useState({show : false, msg: ''});
     const [isConfirmPopupOpen, setIsConfirmPopupOpen] = useState({show : false, msg: ''});
     const dispatch = useDispatch();
+    const userInfo = useSelector(state => state.loginCheck.loginInfo);
+    const nav = useNavigate();
+
+    useEffect(() => {
+        if (userInfo.userId != '') {
+            nav('/home');
+        }
+    }, []);
 
     const idChangeMethod = (e) => {
         setId(e.target.value);
@@ -56,6 +64,7 @@ const Login = () => {
                 // 로그인 성공
                 if (res.status === 200) {
                     // redux ( localStorage ) 저장..
+                    console.log(res.data)
                     dispatch(loginCheckAction.loginInfoSet(res.data.data));
                     navigate('/home');
                 } else {

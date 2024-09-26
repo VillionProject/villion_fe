@@ -30,6 +30,8 @@ import Loading from "./Loading";
 import PopupDom from "./PopupDom";
 import MsgPopup from "./MsgPopup";
 import ConfirmPopup from "./ConfirmPopup";
+import SmallLogo from "../atoms/SmallLogo";
+import back from "../../asset/images/back.webp";
 const ProductDetail = () => {
     const [bookInfo, setBookInfo] = useState('');
     const [libUserInfo, setLibUserInfo] = useState([]);
@@ -207,10 +209,16 @@ const ProductDetail = () => {
 
     }
 
+    const backHandler = () => {
+        nav('/home');
+    }
+
     return (
         <>
         <div className={classes.wrapArea}>
-
+            <div style={{padding : '20px'}} onClick={backHandler}>
+                <img style={{width: '35px', height : '35px', cursor: 'pointer'}} src={back} />
+            </div>
             <div className={classes.paddingArea}>
                 <div className={classes.titleArea}>
                     <h2>{bookInfo.bookName}</h2>

@@ -182,12 +182,12 @@ const Home = () => {
                         <div className={classes.bookListContainer}>
                             <div className={classes.bookTitleWrap}>
                                 <div>villion이 추천하는 책</div>
-                                <div>더보기</div>
+                                {/*<div>드래그해서 더보기</div>*/}
                             </div>
                             <div className={classes.bookContainer}>
                                 <Swiper
-                                    slidesPerView={3}
-                                    spaceBetween={30}
+                                    slidesPerView={3.4}
+                                    spaceBetween={25}
                                     freeMode={true}
                                     modules={[FreeMode, Pagination]}
                                     className="mySwiper"
@@ -206,12 +206,12 @@ const Home = () => {
                         <div className={classes.bookListContainer}>
                             <div className={classes.bookTitleWrap}>
                                 <div>인기 있는 책</div>
-                                <div>더보기</div>
+                                {/*<div>더보기</div>*/}
                             </div>
                             <div className={classes.bookContainer}>
                                 <Swiper
-                                    slidesPerView={3}
-                                    spaceBetween={30}
+                                    slidesPerView={3.4}
+                                    spaceBetween={25}
                                     freeMode={true}
                                     modules={[FreeMode, Pagination]}
                                     className="mySwiper"
