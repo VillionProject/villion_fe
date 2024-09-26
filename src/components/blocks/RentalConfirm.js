@@ -87,7 +87,9 @@ const RentalConfirm = () => {
             [
                 {
                     productId: currData.productId,
-                    quantity: 1
+                    productName: currData.bookName,
+                    quantity: 1,
+                    price: currData.rentalPrice
                 }
             ],
             "CREDIT_CARD"
@@ -150,7 +152,9 @@ const RentalConfirm = () => {
             [
                 {
                     productId: currData.productId,
-                    quantity: 1
+                    productName: currData.bookName,
+                    quantity: 1,
+                    price: currData.rentalPrice
                 }
             ],
             "CREDIT_CARD"
