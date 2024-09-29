@@ -40,28 +40,141 @@
 
 
 ## 프로젝트구조
+![어플리케이션 구성도](https://github.com/user-attachments/assets/35d9e52f-3939-44b5-bcc0-c8c4c82ebd11)
+![흐름도](https://github.com/user-attachments/assets/1cf5ed3d-1abf-4856-bccd-7a4627b0285b)
 
-
-
-
-
+```│          
+├─public  
+│      favicon.ico  
+│      index.html  
+│      manifest.json  
+│      robots.txt  
+│  
+└─src  
+    │  App.js  
+    │  index.js  
+    │  reportWebVitals.js  
+    │  Router.js  
+    │  
+    ├─asset  
+    │  ├─books  
+    │  │      image 10.png  
+    │  │      .  
+    │  │      .  
+    │  │      .  
+    │  │      image 9.png  
+    │  │  
+    │  └─images  
+    │          AddSky.png  
+    │          .  
+    │          .  
+    │          .  
+    │          user_icon.png  
+    │  
+    ├─common  
+    │  │  AuthContext.js  
+    │  │  CommonFunc.js  
+    │  │  Menus.js  
+    │  │  Reg.js  
+    │  │  WebSocketComponent.js  
+    │  │  
+    │  └─api  
+    │          ApiClient.js  
+    │          ApiGetService.js  
+    │          ApiPostService.js  
+    │  
+    ├─components  
+    │  ├─atoms  
+    │  │      Button.js  
+    │  │      HomeBar.js  
+    │  │      Input.js  
+    │  │      Loading.js  
+    │  │      Logo.js  
+    │  │      SmallLogo.js  
+    │  │  
+    │  ├─blocks  
+    │  │      AddProduct.js  
+    │  │      CategorySelect.js  
+    │  │      Center.js  
+    │  │      Chatting.js  
+    │  │      ConfirmPopup.js  
+    │  │      Footer.js  
+    │  │      Header.js  
+    │  │      Home.js  
+    │  │      LibEdit.js  
+    │  │      Loading.js  
+    │  │      Login.js  
+    │  │      MainCover.js  
+    │  │      Mbti2.js  
+    │  │      MbtiStart.js  
+    │  │      MsgPopup.js  
+    │  │      Mybooks.js  
+    │  │      MyCart.js  
+    │  │      MyFolder.js  
+    │  │      MyFolderList.js  
+    │  │      NewFolder.js  
+    │  │      PopupDom.js  
+    │  │      ProductDetail.js  
+    │  │      ProfileChange.js  
+    │  │      Recommended.js  
+    │  │      RentalConfirm.js  
+    │  │      Search.js  
+    │  │      Settings.js  
+    │  │      SignUp.js  
+    │  
+    ├─chat  
+    │  │      ChatModule.js  
+    │  
+    └─config  
+    │          Responsive.js  
+    │  
+    ├─ducks  
+    │      index.js  
+    │      loginCheck.js  
+    │  
+    └─styles  
+        ├─atoms  
+        │      Button.module.css  
+        │      HomeBar.module.css  
+        │      Input.module.css  
+        │      Loading.module.css  
+        │      Logo.module.css  
+        │      SmallLogo.module.css  
+        │  
+        ├─blocks  
+        │      CategorySelect.module.css  
+        │      Center.module.css  
+        │      ChatPage.module.css  
+        │      Chatting.css  
+        │      Chatting.module.css  
+        │      Footer.module.css  
+        │      Header.module.css  
+        │      Home.module.css  
+        │      LibEdit.module.css  
+        │      Loading.module.css  
+        │      Login.module.css  
+        │      MainCover.module.css  
+        │      Mbti2.css  
+        │      MbtiStart.module.css  
+        │      MsgPopup.module.css  
+        │      MyCart.module.css  
+        │      ProductDetail.module.css  
+        │      Recommended.module.css  
+        │      RentalConfirm.module.css  
+        │      Search.module.css  
+        │      Settings.module.css  
+        │      SignUp.module.css  
+        │      swiper.css  
+        │  
+        └─common  
+                reset.css  
+```
 
 
 ## 역할
-<details>
-<summary>1. 로그인/로그아웃</summary>
-<div markdown="1">
-  
-    1-1. id와 email 중 선택하여 로그인 가능
-    1-2. 아이디 저장
-          - 아이디 저장 체크 후에는 계속해서 체크박스 체크 상태 유지
-          - 아이디 저장 체크 해체 후에는 계속해서 체크박스 해체 상태 유지
-    1-3. 로그인 성공 후, head부분 로그인 버튼에서 로그아웃 버튼으로 변경
-    1-4. 로그인 성공 후에만, MY페이지에서 회원정보 확인 및 수정 가능 / 실패 시, 로그인 화면으로 이동
-    1-5. 관리자 외 접속 제한 : 관리자 계정 로그인 성공 시에만, 관리자 페이지 버튼 생성
-    1-6. 로그아웃
-
-
+- 프로젝트 기획
+- 백엔드
+- 화면 작업
 
 
 ## 개발 경험 및 주요 기능
@@ -78,11 +191,11 @@
 
 ## 기능 설명 및 구현
 
-| Main 화면      | Login 화면        |
+| Main       | Login        |
 | ------------ | ------------- |
-| ![GIFMaker_me](https://github.com/sesam-me/HTML_lesson/assets/122416681/b5aa6afa-9ce7-4685-972b-830ab5d4ab05)| ![MovieService login gif](https://github.com/sesam-me/HTML_lesson/assets/122416681/911bd4e9-a6ee-40df-b5f6-68698942d45a)  |
+| ![image](https://github.com/user-attachments/assets/0d4203e4-9d68-4aa9-b073-0c9060a80431)| ![MovieService login gif](https://github.com/sesam-me/HTML_lesson/assets/122416681/911bd4e9-a6ee-40df-b5f6-68698942d45a)  |
 
-| Admin 화면     |
+| 회원가입    |
 | ------------ |
 | ![MovieService admin gif](https://github.com/sesam-me/HTML_lesson/assets/122416681/a100fb95-d0f1-423c-a539-8461dadb879b)|
 
