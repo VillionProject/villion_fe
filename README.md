@@ -201,72 +201,70 @@
 <br><br>
 
 ## 기능 설명 및 구현
-
 | 메인      | 
 | ------------ | 
-| ![image](https://github.com/user-attachments/assets/0d4203e4-9d68-4aa9-b073-0c9060a80431)|
-
+| <img src="https://github.com/user-attachments/assets/0d4203e4-9d68-4aa9-b073-0c9060a80431" width="350" alt="메인" style="display:block; margin:auto;"> |
 
 | 회원가입  |
 | ------------ |
-|  ![villion_회원가입](https://github.com/user-attachments/assets/d459b021-1555-4386-a98f-5e3d6d5c6036)   |
+| <img src="https://github.com/user-attachments/assets/d459b021-1555-4386-a98f-5e3d6d5c6036" width="350" alt="회원가입" style="display:block; margin:auto;"> |
 
 | 로그인      | 
 | ------------ | 
-|  ![villion_로그인](https://github.com/user-attachments/assets/10a74a8c-17df-4db7-9914-7db9198b6834)    |
+| <img src="https://github.com/user-attachments/assets/10a74a8c-17df-4db7-9914-7db9198b6834" width="350" alt="로그인" style="display:block; margin:auto;"> |
 
-|   홈 둘러보기   | 
+| 홈 둘러보기 | 
 | ------------ | 
-|   ![villion_홈](https://github.com/user-attachments/assets/0bd8cc29-c4b5-4305-95f0-2ece6dbf1d71)  |
+| <img src="https://github.com/user-attachments/assets/0bd8cc29-c4b5-4305-95f0-2ece6dbf1d71" width="350" alt="홈 둘러보기" style="display:block; margin:auto;"> |
 
-|   지역 등록   | 
+| 지역 등록 | 
 | ------------ | 
-|  ![Villion - 지역등록](https://github.com/user-attachments/assets/0c81b17a-bb87-4025-8f46-c923c16c5b71)   |
+| <img src="https://github.com/user-attachments/assets/0c81b17a-bb87-4025-8f46-c923c16c5b71" width="350" alt="지역 등록" style="display:block; margin:auto;"> |
 
-|   도서 상세보기  | 
+| 도서 상세보기 | 
 | ------------ | 
-|  ![villion_도서상세보기](https://github.com/user-attachments/assets/34f436a0-7a62-4fba-8a70-daf154bcc7ea)   |
+| <img src="https://github.com/user-attachments/assets/34f436a0-7a62-4fba-8a70-daf154bcc7ea" width="350" alt="도서 상세보기" style="display:block; margin:auto;"> |
 
-|   책 등록   | 
+| 책 등록 | 
 | ------------ | 
-| ![villion_책등록](https://github.com/user-attachments/assets/5577438a-c3c3-4933-afca-7f65078abebc)    |
+| <img src="https://github.com/user-attachments/assets/850916c8-a195-46ab-b24e-a95238405935" width="350" alt="책 등록" style="display:block; margin:auto;"> |
 
-|    책 검색   | 
+| 책 검색 | 
 | ------------ | 
-|  ![villion_검색](https://github.com/user-attachments/assets/0ad1c2f2-ca7e-4cc4-b756-2cebe03d37e9)   |
+| <img src="https://github.com/user-attachments/assets/27b1c8c1-2556-4116-823f-cff196f60c27" width="350" alt="책 검색" style="display:block; margin:auto;"> |
 
-|   책 대여/구매(직거래 - 채팅)     | 
+| 책 대여/구매(직거래 - 채팅) | 
 | ------------ | 
-|   ![구매대여 채팅](https://github.com/user-attachments/assets/ad6b7845-21bc-4212-a255-80baee141d73)  |
+| <img src="https://github.com/user-attachments/assets/ad6b7845-21bc-4212-a255-80baee141d73" width="1150" alt="책 대여/구매(직거래 - 채팅)" style="display:block; margin:auto;"> |
 
-|   책 대여/구매(택배)  | 
+| 책 대여/구매(택배) | 
 | ------------ | 
-| ![villion_택배_대여](https://github.com/user-attachments/assets/c7dfca70-5fc7-49ee-add8-8d555fdd4b6e)   |
+| <img src="https://github.com/user-attachments/assets/0a4124b1-a028-48b7-9911-55169640e5bf" width="350" alt="책 대여/구매(택배)" style="display:block; margin:auto;"> |
 
-|   프로필 변경   | 
+| 프로필 변경 | 
 | ------------ | 
-|   ![villion_프로필변경](https://github.com/user-attachments/assets/4e83f49f-c43a-4716-b47e-0175be79b309)  |
+| <img src="https://github.com/user-attachments/assets/4e83f49f-c43a-4716-b47e-0175be79b309" width="350" alt="프로필 변경" style="display:block; margin:auto;"> |
 
-|   연간 목표도서량 등록     | 
+| 연간 목표도서량 등록 | 
 | ------------ | 
-|   ![Villion - 연간목표도서량](https://github.com/user-attachments/assets/a637460e-2073-4708-aa44-4133b293da13) |
+| <img src="https://github.com/user-attachments/assets/a637460e-2073-4708-aa44-4133b293da13" width="350" alt="연간 목표도서량 등록" style="display:block; margin:auto;"> |
 
-|   MBTI기반 책 추천  | 
+| MBTI 기반 책 추천 | 
 | ------------ | 
-|     |
+| <img src="https://github.com/user-attachments/assets/d2d94268-4e5b-4134-9e62-ec9ca96406b4" width="350" alt="MBTI기반 책 추천" style="display:block; margin:auto;"> |
 
-|   장바구니    | 
+| 장바구니 | 
 | ------------ | 
-|   ![Villion - 장바구니](https://github.com/user-attachments/assets/6a442177-fccb-4052-9ceb-8a461f17abfa)  |
+| <img src="https://github.com/user-attachments/assets/6a442177-fccb-4052-9ceb-8a461f17abfa" width="350" alt="장바구니" style="display:block; margin:auto;"> |
 
-|   찜 도서   | 
+| 찜 도서 | 
 | ------------ | 
-|  ![Villion - 찜등록](https://github.com/user-attachments/assets/224dc7eb-ca11-4b6c-ae90-876618085cb1)   |
+| <img src="https://github.com/user-attachments/assets/224dc7eb-ca11-4b6c-ae90-876618085cb1" width="350" alt="찜 도서" style="display:block; margin:auto;"> |
 
-
-|    찜 도서(폴더 만들기) | 
+| 찜 도서(폴더 만들기) | 
 | ------------ | 
-|  ![Villion - 찜폴더등록](https://github.com/user-attachments/assets/f4dccfa8-864c-44df-92dc-167c2547f8c2)   |
+| <img src="https://github.com/user-attachments/assets/f4dccfa8-864c-44df-92dc-167c2547f8c2" width="350" alt="찜 도서(폴더 만들기)" style="display:block; margin:auto;"> |
+
 
 <br><br>
 
