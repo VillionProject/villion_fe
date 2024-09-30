@@ -1,5 +1,7 @@
 # Villion (우리 동네 도서 대여 플랫폼)
-![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/c0612e3a-3a54-4d34-8e7c-0bef0543af6e/eea66066-cf34-46c3-94aa-4a33b374cf08/image.png)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c68d5357-a304-43d1-9e52-a159f927ae36" width="750"/>
+</p>
 
 배포 URI : http://villion.store
 
@@ -15,7 +17,7 @@
 [7. 기능 설명 및 구현](#기능-설명-및-구현)<br>
 [8. 느낀점](#느낀점)
 
-
+<br><br>
 
 ## 프로젝트 소개
 이 프로젝트는 디지털과 실물 책을 모두 즐기는 사람들을 위해 기획되었습니다.<br>
@@ -24,12 +26,15 @@
 이 프로젝트는 그런 책들을 다시 활용하고 공유하는 것을 목적으로 합니다.<br>
 책을 팔지 않고 공유하기, 공간 비우기, 재밌게 읽은 책 공유, 수익을 창출하여 다시 새 책 구매하는 즐거움을 얻을 수 있습니다.<br><br>
 
+<br><br>
+
 ## 팀원 구성
 |   이세인    |   이동명    |
 |:-----------:|:-----------:|
 | [@sesam_me](https://github.com/sesam-me) | [@dongmyoungLee](https://github.com/dongmyoungLee) |
 |     PL      |     FE      |
 
+<br><br>
 
 ## 개발환경
 | Category       | Name                                                                                           |
@@ -39,8 +44,7 @@
 | Collaboration  | • GitHub, Notion                                                                                |
 | Deployment     | • Google Cloud                                                                                  |
 
-
-
+<br><br>
 
 ## 프로젝트구조
 ![어플리케이션 구성도](https://github.com/user-attachments/assets/35d9e52f-3939-44b5-bcc0-c8c4c82ebd11)
@@ -174,11 +178,14 @@
 ```
 
 
+<br><br>
+
 ## 역할
 - 프로젝트 기획
 - 백엔드
 - 화면 작업
 
+<br><br>
 
 ## 개발 경험 및 주요 기능
 | **개발 경험 및 주요 기능** |                                          |
@@ -191,71 +198,77 @@
 | **도서 추천**             | - MBTI 테스트                           |
 | **검색**                   | - 도서 검색                             | 비밀번호 재설정</li>
 
+<br><br>
 
 ## 기능 설명 및 구현
 
-| 메인    ㅇ   | 
+| 메인      | 
 | ------------ | 
 | ![image](https://github.com/user-attachments/assets/0d4203e4-9d68-4aa9-b073-0c9060a80431)|
 
 
-| 회원가입   ㅇ |
+| 회원가입  |
 | ------------ |
-|      |
+|  ![villion_회원가입](https://github.com/user-attachments/assets/d459b021-1555-4386-a98f-5e3d6d5c6036)   |
 
-
-|   홈 둘러보기   ㅇ  | 
+| 로그인      | 
 | ------------ | 
-|     |
+|  ![villion_로그인](https://github.com/user-attachments/assets/10a74a8c-17df-4db7-9914-7db9198b6834)    |
 
-|   지역 등록  ㅇ   | 
+|   홈 둘러보기   | 
 | ------------ | 
-|     |
+|   ![villion_홈](https://github.com/user-attachments/assets/0bd8cc29-c4b5-4305-95f0-2ece6dbf1d71)  |
 
-|   책 상세보기  ㅇ   | 
+|   지역 등록   | 
 | ------------ | 
-|     |
+|  ![Villion - 지역등록](https://github.com/user-attachments/assets/0c81b17a-bb87-4025-8f46-c923c16c5b71)   |
 
-|   책 등록  ㅇ   | 
+|   도서 상세보기  | 
 | ------------ | 
-|     |
+|  ![villion_도서상세보기](https://github.com/user-attachments/assets/34f436a0-7a62-4fba-8a70-daf154bcc7ea)   |
 
-|    책 검색 ㅇ   | 
+|   책 등록   | 
 | ------------ | 
-|     |
+| ![villion_책등록](https://github.com/user-attachments/assets/5577438a-c3c3-4933-afca-7f65078abebc)    |
+
+|    책 검색   | 
+| ------------ | 
+|  ![villion_검색](https://github.com/user-attachments/assets/0ad1c2f2-ca7e-4cc4-b756-2cebe03d37e9)   |
 
 |   책 대여/구매(직거래 - 채팅)     | 
 | ------------ | 
-|     |
+|   ![구매대여 채팅](https://github.com/user-attachments/assets/ad6b7845-21bc-4212-a255-80baee141d73)  |
 
-|   책 대여/구매(택배) ㅇ  | 
+|   책 대여/구매(택배)  | 
 | ------------ | 
-|     |
+| ![villion_택배_대여](https://github.com/user-attachments/assets/c7dfca70-5fc7-49ee-add8-8d555fdd4b6e)   |
 
-|   프로필 변경  ㅇ   | 
+|   프로필 변경   | 
 | ------------ | 
-|     |
+|   ![villion_프로필변경](https://github.com/user-attachments/assets/4e83f49f-c43a-4716-b47e-0175be79b309)  |
 
 |   연간 목표도서량 등록     | 
 | ------------ | 
-|     |
+|   ![Villion - 연간목표도서량](https://github.com/user-attachments/assets/a637460e-2073-4708-aa44-4133b293da13) |
 
-|   MBTI기반 책 추천   ㅇ  | 
+|   MBTI기반 책 추천  | 
 | ------------ | 
 |     |
 
-|   장바구니    ㅇ | 
+|   장바구니    | 
 | ------------ | 
-|     |
+|   ![Villion - 장바구니](https://github.com/user-attachments/assets/6a442177-fccb-4052-9ceb-8a461f17abfa)  |
 
-|   찜 도서  ㅇ    | 
+|   찜 도서   | 
 | ------------ | 
-|     |
+|  ![Villion - 찜등록](https://github.com/user-attachments/assets/224dc7eb-ca11-4b6c-ae90-876618085cb1)   |
 
 
-|    찜 도서(폴더 만들기) ㅇ   | 
+|    찜 도서(폴더 만들기) | 
 | ------------ | 
-|     |
+|  ![Villion - 찜폴더등록](https://github.com/user-attachments/assets/f4dccfa8-864c-44df-92dc-167c2547f8c2)   |
+
+<br><br>
 
 ## 느낀점
 처음에는 API 문서화의 중요성을 간과했습니다. 기능이 적을 때는 문제가 없었지만, 서버 작업을 먼저 시작하면서 API 명세서에 주소만 기재한 것이 혼란을 일으켰습니다. 
