@@ -234,8 +234,8 @@
 | <img src="https://github.com/user-attachments/assets/27b1c8c1-2556-4116-823f-cff196f60c27" width="350" alt="책 검색" style="display:block; margin:auto;"> |
 
 | 책 대여/구매(직거래 - 채팅) | 
-- 대여 마감일이 지나면 다음날 오전 12시에 반납처리되고 해당 책은 대여 가능한 상태로 변경됩니다.
-| ------------ | 
+| ------------ |
+| - 대여 마감일이 지나면 다음날 오전 12시에 반납처리되고 해당 책은 대여 가능한 상태로 변경됩니다.   |
 | <img src="https://github.com/user-attachments/assets/ad6b7845-21bc-4212-a255-80baee141d73" width="1150" alt="책 대여/구매(직거래 - 채팅)" style="display:block; margin:auto;"> |
 
 | 책 대여/구매(택배) | 
