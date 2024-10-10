@@ -207,63 +207,82 @@
 
 | 회원가입  |
 | ------------ |
+| - 이메일 주소와 비밀번호를 입력하면 유효성 검사가 즉시 진행됩니다. 검사를 통과하지 못할 경우, 알림 팝업이 표시됩니다.   |
+| - 유효성 검사 기준 : 이메일 주소 형식 확인, 이미 가입된 이메일 여부 확인, 비밀번호는 8자 이상 25자 이하, 영문자, 특수문자(최소 1개), 숫자(최소 1개) 포함, 유효성 검사를 통과하면 빌리언 로그인 화면으로 이동합니다.   |
 | <img src="https://github.com/user-attachments/assets/d459b021-1555-4386-a98f-5e3d6d5c6036" width="350" alt="회원가입" style="display:block; margin:auto;"> |
 
 | 로그인      | 
 | ------------ | 
+| - 이메일 주소와 비밀번호를 입력하면 유효성 검사 및 등록된 사용자 확인이 동시에 진행됩니다. 검사를 통과하지 못할 경우, 알림 팝업이 생성됩니다. |
+| - 사용자의 정보는 Redux를 통해 LocalStorage에 저장됩니다. 이는 보안 취약성과 동기화 문제를 초래할 수 있지만, 개인 프로젝트의 특성상 빠른 접근과 성능 최적화, 페이지 새로 고침 시 데이터 유지를 위해 선택되었습니다. |
+| - 로그인 성공 시, 빌리언 메인 화면이 나타납니다. |
 | <img src="https://github.com/user-attachments/assets/10a74a8c-17df-4db7-9914-7db9198b6834" width="350" alt="로그인" style="display:block; margin:auto;"> |
 
 | 홈 둘러보기 | 
-| ------------ | 
+| ------------ |
+| - 메인 홈은 사용자 위치 지정, 도서 검색, 내 장바구니, 추천 도서 및 인기 도서 목록, 그리고 하단에 네비게이션 메뉴바가 배치되어 있습니다. 추천 도서는 사용자의 위치에 따라 다르게 제공되며, 인기 도서는 현재 가장 많이 판매되고 있는 책을 기준으로 선정됩니다. |
+| - 이 과정에서 HTTPS로 서버와 통신할 때, 특정 브라우저에서 보안 경고 메시지가 발생할 수 있습니다. 이는 HTTPS를 통해 안전하게 정보를 전송하지 않으면, 지역 등록이 정상적으로 이루어지지 않기 때문입니다.|
+| - 배포된 페이지는 HTTP프로토콜 이기 때문에 정상 작동하지 않을 수 있습니다.|
 | <img src="https://github.com/user-attachments/assets/0bd8cc29-c4b5-4305-95f0-2ece6dbf1d71" width="350" alt="홈 둘러보기" style="display:block; margin:auto;"> |
 
 | 지역 등록 | 
-| ------------ | 
+| ------------ |
+| - 사용자의 위치 정보를 업데이트하고, 추천된 정보를 최신 상태로 유지하여 지역 정보를 갱신합니다.  |
 | <img src="https://github.com/user-attachments/assets/0c81b17a-bb87-4025-8f46-c923c16c5b71" width="350" alt="지역 등록" style="display:block; margin:auto;"> |
 
 | 도서 상세보기 | 
-| ------------ | 
+| ------------ |
+| - 사용자가 선택한 도서의 상세 정보를 제공합니다. 상세보기에서는 해당 책을 등록한 다른 사용자 정보와 같은 카테고리의 책 목록을 확인할 수 있으며, 책을 찜 목록에 추가하거나 카트에 담고 대여 또는 구매를 진행할 수 있는 페이지입니다.   |
 | <img src="https://github.com/user-attachments/assets/34f436a0-7a62-4fba-8a70-daf154bcc7ea" width="350" alt="도서 상세보기" style="display:block; margin:auto;"> |
 
 | 책 등록 | 
-| ------------ | 
+| ------------ |
+| - 사용자가 자신이 소유한 책을 판매하거나 대여하기 위해 등록할 수 있는 페이지입니다. 카테고리는 영어와 한국어로 드롭다운 메뉴를 제공하여 2가지 언어를 지원합니다.   |
 | <img src="https://github.com/user-attachments/assets/850916c8-a195-46ab-b24e-a95238405935" width="350" alt="책 등록" style="display:block; margin:auto;"> |
 
 | 책 검색 | 
-| ------------ | 
+| ------------ |
+| - 책의 제목과 설명을 기반으로 일치하는 책을 검색합니다. 성능 향상과 검색 정확도를 위해 MySQL의 Full Text Index를 사용하였습니다.   |
 | <img src="https://github.com/user-attachments/assets/27b1c8c1-2556-4116-823f-cff196f60c27" width="350" alt="책 검색" style="display:block; margin:auto;"> |
 
 | 책 대여/구매(직거래 - 채팅) | 
 | ------------ |
-| - 대여 마감일이 지나면 다음날 오전 12시에 반납처리되고 해당 책은 대여 가능한 상태로 변경됩니다.   |
+| - 사용자 간의 직거래를 위해 채팅 기능을 지원합니다. 유연한 데이터 모델링과 고속 읽기/쓰기 성능을 위해 관계형 데이터베이스 대신 MongoDB를 사용하였으며, 사용자1_사용자2 형식으로 데이터를 저장하여 1:1 대화를 지원합니다.   |
 | <img src="https://github.com/user-attachments/assets/ad6b7845-21bc-4212-a255-80baee141d73" width="1150" alt="책 대여/구매(직거래 - 채팅)" style="display:block; margin:auto;"> |
 
 | 책 대여/구매(택배) | 
-| ------------ | 
+| ------------ |
+| - 사용자의 책 대여 및 구매 신청 페이지입니다. 정보를 입력하면 대여 및 구매 원장(db)에 기록됩니다.   |
 | <img src="https://github.com/user-attachments/assets/0a4124b1-a028-48b7-9911-55169640e5bf" width="350" alt="책 대여/구매(택배)" style="display:block; margin:auto;"> |
 
 | 프로필 변경 | 
-| ------------ | 
+| ------------ |
+| - 사용자의 프로필 이미지를 업데이트하는 기능입니다. 프론트엔드에서 저장된 데이터와 서버의 사용자 정보를 동기화하여 수정합니다.   |
 | <img src="https://github.com/user-attachments/assets/4e83f49f-c43a-4716-b47e-0175be79b309" width="350" alt="프로필 변경" style="display:block; margin:auto;"> |
 
 | 연간 목표도서량 등록 | 
-| ------------ | 
+| ------------ |
+| - 사용자가 설정한 연간 목표 도서량을 직관적으로 볼 수 있도록 게이지 형식으로 구현하였습니다. 도서량은 대여 및 구매를 통해 증가합니다.   |
 | <img src="https://github.com/user-attachments/assets/a637460e-2073-4708-aa44-4133b293da13" width="350" alt="연간 목표도서량 등록" style="display:block; margin:auto;"> |
 
 | MBTI 기반 책 추천 | 
-| ------------ | 
+| ------------ |
+| - 간단한 설문조사를 통해 유저의 MBTI 를 조사하고 해당 MBTI에 맞는 책을 추천합니다.   |
 | <img src="https://github.com/user-attachments/assets/d2d94268-4e5b-4134-9e62-ec9ca96406b4" width="350" alt="MBTI기반 책 추천" style="display:block; margin:auto;"> |
 
 | 장바구니 | 
-| ------------ | 
+| ------------ |
+| - 유저가 원하는 책을 장바구니에 담을 수 있습니다.   |
 | <img src="https://github.com/user-attachments/assets/6a442177-fccb-4052-9ceb-8a461f17abfa" width="350" alt="장바구니" style="display:block; margin:auto;"> |
 
 | 찜 도서 | 
-| ------------ | 
+| ------------ |
+| - 유저가 원하는 도서를 내 찜목록에 담을 수 있습니다.   |
 | <img src="https://github.com/user-attachments/assets/224dc7eb-ca11-4b6c-ae90-876618085cb1" width="350" alt="찜 도서" style="display:block; margin:auto;"> |
 
 | 찜 도서(폴더 만들기) | 
-| ------------ | 
+| ------------ |
+| - 유저가 원하는 도서를 담을 찜 폴더 목록을 커스텀 할 수 있습니다.   |
 | <img src="https://github.com/user-attachments/assets/f4dccfa8-864c-44df-92dc-167c2547f8c2" width="350" alt="찜 도서(폴더 만들기)" style="display:block; margin:auto;"> |
 
 
